@@ -6,7 +6,7 @@
   "output": {
     "data_dir": "data",
     "logs_dir": "logs",
-    "parquet": "data/ree_long_2019_2025.parquet",
+    "parquet": "data/datos_ree_originales_2019_2025.parquet",
     "control_parquet": "data/ree_control_2019_2025.parquet",
     "log_file": "logs/scraper.log"
   },
@@ -221,6 +221,78 @@
       "title": "Intercambios programados en todas las fronteras",
       "category": "intercambios",
       "widget": "todas-fronteras-programados",
+      "time_trunc": "day"
+    },
+    {
+      "name": "intercambios_francia_fisicos",
+      "title": "Intercambios físicos con Francia",
+      "category": "intercambios",
+      "widget": "francia-frontera",
+      "border": "Francia",
+      "border_select": "francia",
+      "time_trunc": "day"
+    },
+    {
+      "name": "intercambios_portugal_fisicos",
+      "title": "Intercambios físicos con Portugal",
+      "category": "intercambios",
+      "widget": "portugal-frontera",
+      "border": "Portugal",
+      "border_select": "portugal",
+      "time_trunc": "day"
+    },
+    {
+      "name": "intercambios_marruecos_fisicos",
+      "title": "Intercambios físicos con Marruecos",
+      "category": "intercambios",
+      "widget": "marruecos-frontera",
+      "border": "Marruecos",
+      "border_select": "marruecos",
+      "time_trunc": "day"
+    },
+    {
+      "name": "intercambios_andorra_fisicos",
+      "title": "Intercambios físicos con Andorra",
+      "category": "intercambios",
+      "widget": "andorra-frontera",
+      "border": "Andorra",
+      "border_select": "andorra",
+      "time_trunc": "day"
+    },
+    {
+      "name": "intercambios_francia_programados",
+      "title": "Intercambios programados con Francia",
+      "category": "intercambios",
+      "widget": "francia-frontera-programado",
+      "border": "Francia",
+      "border_select": "francia",
+      "time_trunc": "day"
+    },
+    {
+      "name": "intercambios_portugal_programados",
+      "title": "Intercambios programados con Portugal",
+      "category": "intercambios",
+      "widget": "portugal-frontera-programado",
+      "border": "Portugal",
+      "border_select": "portugal",
+      "time_trunc": "day"
+    },
+    {
+      "name": "intercambios_marruecos_programados",
+      "title": "Intercambios programados con Marruecos",
+      "category": "intercambios",
+      "widget": "marruecos-frontera-programado",
+      "border": "Marruecos",
+      "border_select": "marruecos",
+      "time_trunc": "day"
+    },
+    {
+      "name": "intercambios_andorra_programados",
+      "title": "Intercambios programados con Andorra",
+      "category": "intercambios",
+      "widget": "andorra-frontera-programado",
+      "border": "Andorra",
+      "border_select": "andorra",
       "time_trunc": "day"
     },
     {

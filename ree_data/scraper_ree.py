@@ -9,7 +9,7 @@ Estructura esperada:
     ├── ree_endpoints.txt
     ├── requirements.txt
     ├── data/
-    │   ├── ree_long_2019_2025.parquet
+    │   ├── datos_ree_originales_2019_2025.parquet
     │   └── ree_control_2019_2025.parquet
     └── logs/
         └── scraper.log
@@ -52,7 +52,7 @@ HEADERS = {
 
 COLUMNS = [
     "datetime", "date", "year", "month", "time_granularity",
-    "geography_id", "geography_type", "geography_name", "geo_limit",
+    "geography_id", "geography_type", "geography_name", "border", "geo_limit",
     "system", "category", "endpoint", "widget",
     "indicator_id", "indicator_type", "indicator_group_id",
     "indicator_name", "indicator_description",
@@ -70,6 +70,7 @@ ARROW_SCHEMA = pa.schema([
     pa.field("geography_id", pa.string()),
     pa.field("geography_type", pa.string()),
     pa.field("geography_name", pa.string()),
+    pa.field("border", pa.string()),
     pa.field("geo_limit", pa.string()),
     pa.field("system", pa.string()),
     pa.field("category", pa.string()),
@@ -136,6 +137,8 @@ def build_url(base_url: str, endpoint: dict, start_date: str,
             "geo_limit": geo["geo_limit"],
             "geo_ids": str(geo["geo_id"]),
         })
+    if endpoint.get("border_select"):
+        params["borderSelect"] = endpoint["border_select"]
 
     return (
         f"{base_url}/{endpoint['category']}/{endpoint['widget']}"
@@ -258,6 +261,7 @@ def flatten_payload(payload: dict, endpoint: dict, geo: dict | None,
                     "geography_id": str(geo["geo_id"]) if geo else None,
                     "geography_type": geo["geo_limit"] if geo else "system",
                     "geography_name": geo["name"] if geo else "Sistema eléctrico",
+                    "border": endpoint.get("border"),
                     "geo_limit": geo["geo_limit"] if geo else None,
                     "system": "CCAA" if geo else "Sistema eléctrico",
                     "category": endpoint["category"], "endpoint": endpoint["name"], "widget": endpoint["widget"],
@@ -290,7 +294,7 @@ def normalize(df: pd.DataFrame) -> pd.DataFrame:
 
     text_columns = [
         "date", "time_granularity", "geography_id", "geography_type",
-        "geography_name", "geo_limit", "system", "category", "endpoint",
+        "geography_name", "border", "geo_limit", "system", "category", "endpoint",
         "widget", "indicator_id", "indicator_type", "indicator_group_id",
         "indicator_name", "indicator_description", "technology_id",
         "technology_name", "unit", "status", "source_url", "retrieved_at",
@@ -351,7 +355,7 @@ def main() -> None:
 
     start_year = int(config["start_year"])
     end_year = int(config["end_year"])
-    observations_path = DATA_DIR / f"ree_long_{start_year}_{end_year}.parquet"
+    observations_path = DATA_DIR / f"datos_ree_originales_{start_year}_{end_year}.parquet"
     control_path = DATA_DIR / f"ree_control_{start_year}_{end_year}.parquet"
 
     # Una ejecución limpia: si vuelves a lanzar el scraper, reemplaza el dataset.

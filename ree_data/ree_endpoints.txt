@@ -1,0 +1,239 @@
+REData — MANIFIESTO DE ENDPOINTS ACTIVO
+================================================================================
+Periodo: 2019-2025
+Endpoints activos: 22 (10 territoriales + 12 de sistema)
+Geografías: 17 CCAA + Ceuta + Melilla = 19
+Petición: un año por vez (request_period=year)
+
+ENDPOINTS TERRITORIALES
+demanda_evolucion | Evolución de la demanda | month
+https://apidatos.ree.es/es/datos/demanda/evolucion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=4
+https://apidatos.ree.es/es/datos/demanda/evolucion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=5
+https://apidatos.ree.es/es/datos/demanda/evolucion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=6
+https://apidatos.ree.es/es/datos/demanda/evolucion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=7
+https://apidatos.ree.es/es/datos/demanda/evolucion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=8
+https://apidatos.ree.es/es/datos/demanda/evolucion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=9
+https://apidatos.ree.es/es/datos/demanda/evolucion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=10
+https://apidatos.ree.es/es/datos/demanda/evolucion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=11
+https://apidatos.ree.es/es/datos/demanda/evolucion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=12
+https://apidatos.ree.es/es/datos/demanda/evolucion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=13
+https://apidatos.ree.es/es/datos/demanda/evolucion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=14
+https://apidatos.ree.es/es/datos/demanda/evolucion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=15
+https://apidatos.ree.es/es/datos/demanda/evolucion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=16
+https://apidatos.ree.es/es/datos/demanda/evolucion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=17
+https://apidatos.ree.es/es/datos/demanda/evolucion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=18
+https://apidatos.ree.es/es/datos/demanda/evolucion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=19
+https://apidatos.ree.es/es/datos/demanda/evolucion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=20
+https://apidatos.ree.es/es/datos/demanda/evolucion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ceuta&geo_ids=8744
+https://apidatos.ree.es/es/datos/demanda/evolucion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=melilla&geo_ids=8745
+balance_electrico | Balance eléctrico | day
+https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=4
+https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=5
+https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=6
+https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=7
+https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=8
+https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=9
+https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=10
+https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=11
+https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=12
+https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=13
+https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=14
+https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=15
+https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=16
+https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=17
+https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=18
+https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=19
+https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=20
+https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day&geo_trunc=electric_system&geo_limit=ceuta&geo_ids=8744
+https://apidatos.ree.es/es/datos/balance/balance-electrico?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day&geo_trunc=electric_system&geo_limit=melilla&geo_ids=8745
+estructura_generacion | Estructura de generación | month
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=4
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=5
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=6
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=7
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=8
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=9
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=10
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=11
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=12
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=13
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=14
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=15
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=16
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=17
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=18
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=19
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=20
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ceuta&geo_ids=8744
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=melilla&geo_ids=8745
+evolucion_renovable_no_renovable | Evolución renovable/no renovable | month
+https://apidatos.ree.es/es/datos/generacion/evolucion-renovable-no-renovable?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=4
+https://apidatos.ree.es/es/datos/generacion/evolucion-renovable-no-renovable?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=5
+https://apidatos.ree.es/es/datos/generacion/evolucion-renovable-no-renovable?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=6
+https://apidatos.ree.es/es/datos/generacion/evolucion-renovable-no-renovable?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=7
+https://apidatos.ree.es/es/datos/generacion/evolucion-renovable-no-renovable?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=8
+https://apidatos.ree.es/es/datos/generacion/evolucion-renovable-no-renovable?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=9
+https://apidatos.ree.es/es/datos/generacion/evolucion-renovable-no-renovable?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=10
+https://apidatos.ree.es/es/datos/generacion/evolucion-renovable-no-renovable?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=11
+https://apidatos.ree.es/es/datos/generacion/evolucion-renovable-no-renovable?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=12
+https://apidatos.ree.es/es/datos/generacion/evolucion-renovable-no-renovable?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=13
+https://apidatos.ree.es/es/datos/generacion/evolucion-renovable-no-renovable?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=14
+https://apidatos.ree.es/es/datos/generacion/evolucion-renovable-no-renovable?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=15
+https://apidatos.ree.es/es/datos/generacion/evolucion-renovable-no-renovable?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=16
+https://apidatos.ree.es/es/datos/generacion/evolucion-renovable-no-renovable?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=17
+https://apidatos.ree.es/es/datos/generacion/evolucion-renovable-no-renovable?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=18
+https://apidatos.ree.es/es/datos/generacion/evolucion-renovable-no-renovable?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=19
+https://apidatos.ree.es/es/datos/generacion/evolucion-renovable-no-renovable?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=20
+https://apidatos.ree.es/es/datos/generacion/evolucion-renovable-no-renovable?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ceuta&geo_ids=8744
+https://apidatos.ree.es/es/datos/generacion/evolucion-renovable-no-renovable?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=melilla&geo_ids=8745
+estructura_renovables | Estructura de generación renovable | month
+https://apidatos.ree.es/es/datos/generacion/estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=4
+https://apidatos.ree.es/es/datos/generacion/estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=5
+https://apidatos.ree.es/es/datos/generacion/estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=6
+https://apidatos.ree.es/es/datos/generacion/estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=7
+https://apidatos.ree.es/es/datos/generacion/estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=8
+https://apidatos.ree.es/es/datos/generacion/estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=9
+https://apidatos.ree.es/es/datos/generacion/estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=10
+https://apidatos.ree.es/es/datos/generacion/estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=11
+https://apidatos.ree.es/es/datos/generacion/estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=12
+https://apidatos.ree.es/es/datos/generacion/estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=13
+https://apidatos.ree.es/es/datos/generacion/estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=14
+https://apidatos.ree.es/es/datos/generacion/estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=15
+https://apidatos.ree.es/es/datos/generacion/estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=16
+https://apidatos.ree.es/es/datos/generacion/estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=17
+https://apidatos.ree.es/es/datos/generacion/estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=18
+https://apidatos.ree.es/es/datos/generacion/estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=19
+https://apidatos.ree.es/es/datos/generacion/estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=20
+https://apidatos.ree.es/es/datos/generacion/estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ceuta&geo_ids=8744
+https://apidatos.ree.es/es/datos/generacion/estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=melilla&geo_ids=8745
+estructura_generacion_emisiones | Generación y emisiones asociadas | month
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=4
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=5
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=6
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=7
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=8
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=9
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=10
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=11
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=12
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=13
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=14
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=15
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=16
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=17
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=18
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=19
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=20
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ceuta&geo_ids=8744
+https://apidatos.ree.es/es/datos/generacion/estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=melilla&geo_ids=8745
+evolucion_generacion_emisiones | Evolución de generación con/sin emisiones | month
+https://apidatos.ree.es/es/datos/generacion/evolucion-estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=4
+https://apidatos.ree.es/es/datos/generacion/evolucion-estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=5
+https://apidatos.ree.es/es/datos/generacion/evolucion-estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=6
+https://apidatos.ree.es/es/datos/generacion/evolucion-estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=7
+https://apidatos.ree.es/es/datos/generacion/evolucion-estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=8
+https://apidatos.ree.es/es/datos/generacion/evolucion-estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=9
+https://apidatos.ree.es/es/datos/generacion/evolucion-estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=10
+https://apidatos.ree.es/es/datos/generacion/evolucion-estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=11
+https://apidatos.ree.es/es/datos/generacion/evolucion-estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=12
+https://apidatos.ree.es/es/datos/generacion/evolucion-estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=13
+https://apidatos.ree.es/es/datos/generacion/evolucion-estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=14
+https://apidatos.ree.es/es/datos/generacion/evolucion-estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=15
+https://apidatos.ree.es/es/datos/generacion/evolucion-estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=16
+https://apidatos.ree.es/es/datos/generacion/evolucion-estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=17
+https://apidatos.ree.es/es/datos/generacion/evolucion-estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=18
+https://apidatos.ree.es/es/datos/generacion/evolucion-estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=19
+https://apidatos.ree.es/es/datos/generacion/evolucion-estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=20
+https://apidatos.ree.es/es/datos/generacion/evolucion-estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ceuta&geo_ids=8744
+https://apidatos.ree.es/es/datos/generacion/evolucion-estructura-generacion-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=melilla&geo_ids=8745
+potencia_instalada | Potencia instalada de generación | month
+https://apidatos.ree.es/es/datos/generacion/potencia-instalada-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=4
+https://apidatos.ree.es/es/datos/generacion/potencia-instalada-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=5
+https://apidatos.ree.es/es/datos/generacion/potencia-instalada-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=6
+https://apidatos.ree.es/es/datos/generacion/potencia-instalada-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=7
+https://apidatos.ree.es/es/datos/generacion/potencia-instalada-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=8
+https://apidatos.ree.es/es/datos/generacion/potencia-instalada-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=9
+https://apidatos.ree.es/es/datos/generacion/potencia-instalada-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=10
+https://apidatos.ree.es/es/datos/generacion/potencia-instalada-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=11
+https://apidatos.ree.es/es/datos/generacion/potencia-instalada-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=12
+https://apidatos.ree.es/es/datos/generacion/potencia-instalada-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=13
+https://apidatos.ree.es/es/datos/generacion/potencia-instalada-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=14
+https://apidatos.ree.es/es/datos/generacion/potencia-instalada-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=15
+https://apidatos.ree.es/es/datos/generacion/potencia-instalada-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=16
+https://apidatos.ree.es/es/datos/generacion/potencia-instalada-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=17
+https://apidatos.ree.es/es/datos/generacion/potencia-instalada-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=18
+https://apidatos.ree.es/es/datos/generacion/potencia-instalada-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=19
+https://apidatos.ree.es/es/datos/generacion/potencia-instalada-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=20
+https://apidatos.ree.es/es/datos/generacion/potencia-instalada-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ceuta&geo_ids=8744
+https://apidatos.ree.es/es/datos/generacion/potencia-instalada-generacion?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=melilla&geo_ids=8745
+potencia_estructura_renovables | Potencia instalada renovable | month
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=4
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=5
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=6
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=7
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=8
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=9
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=10
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=11
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=12
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=13
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=14
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=15
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=16
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=17
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=18
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=19
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=20
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ceuta&geo_ids=8744
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-renovables?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=melilla&geo_ids=8745
+potencia_estructura_emisiones | Potencia instalada con/sin emisiones | month
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=4
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=5
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=6
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=7
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=8
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=9
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=10
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=11
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=12
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=13
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=14
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=15
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=16
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=17
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=18
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=19
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ccaa&geo_ids=20
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=ceuta&geo_ids=8744
+https://apidatos.ree.es/es/datos/generacion/potencia-estructura-emisiones-asociadas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month&geo_trunc=electric_system&geo_limit=melilla&geo_ids=8745
+
+ENDPOINTS DE SISTEMA
+intercambios_todas_fronteras_fisicos | Intercambios físicos en todas las fronteras | day
+https://apidatos.ree.es/es/datos/intercambios/todas-fronteras-fisicos?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day
+intercambios_todas_fronteras_programados | Intercambios programados en todas las fronteras | day
+https://apidatos.ree.es/es/datos/intercambios/todas-fronteras-programados?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day
+mercados_componentes_precio | Componentes del precio de la energía de cierre | month
+https://apidatos.ree.es/es/datos/mercados/componentes-precio-energia-cierre-desglose?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month
+mercados_energia_gestionada_ajustes | Energía gestionada en servicios de ajuste | month
+https://apidatos.ree.es/es/datos/mercados/energia-gestionada-servicios-ajuste?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month
+mercados_energia_restricciones | Energía de restricciones | month
+https://apidatos.ree.es/es/datos/mercados/energia-restricciones?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month
+mercados_regulacion_secundaria | Energía y precios de regulación secundaria | month
+https://apidatos.ree.es/es/datos/mercados/energia-precios-regulacion-secundaria?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month
+mercados_regulacion_terciaria | Energía y precios de regulación terciaria | month
+https://apidatos.ree.es/es/datos/mercados/energia-precios-regulacion-terciaria?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month
+mercados_coste_ajustes | Coste de servicios de ajuste | month
+https://apidatos.ree.es/es/datos/mercados/coste-servicios-ajuste?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month
+transporte_ens | Energía no suministrada | month
+https://apidatos.ree.es/es/datos/transporte/energia-no-suministrada-ens?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month
+transporte_tim | Tiempo de interrupción medio | month
+https://apidatos.ree.es/es/datos/transporte/tiempo-interrupcion-medio-tim?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month
+transporte_numero_cortes | Número de cortes | month
+https://apidatos.ree.es/es/datos/transporte/numero-cortes?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month
+transporte_km_lineas | Kilómetros de líneas de transporte | month
+https://apidatos.ree.es/es/datos/transporte/kilometros-lineas?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month
+
+ENDPOINTS EXCLUIDOS
+demanda_variacion_componentes | HTTP 400 en las pruebas
+mercados_precios_restricciones | HTTP 200 pero 0 observaciones en las pruebas
+mercados_gestion_desvios | HTTP 500 en las pruebas

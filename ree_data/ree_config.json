@@ -1,0 +1,311 @@
+{
+  "base_url": "https://apidatos.ree.es/es/datos",
+  "start_year": 2019,
+  "end_year": 2025,
+  "request_period": "year",
+  "output": {
+    "data_dir": "data",
+    "logs_dir": "logs",
+    "parquet": "data/ree_long_2019_2025.parquet",
+    "control_parquet": "data/ree_control_2019_2025.parquet",
+    "log_file": "logs/scraper.log"
+  },
+  "geographies": [
+    {
+      "name": "Andalucía",
+      "geo_limit": "ccaa",
+      "geo_id": 4,
+      "geography_type": "ccaa"
+    },
+    {
+      "name": "Aragón",
+      "geo_limit": "ccaa",
+      "geo_id": 5,
+      "geography_type": "ccaa"
+    },
+    {
+      "name": "Cantabria",
+      "geo_limit": "ccaa",
+      "geo_id": 6,
+      "geography_type": "ccaa"
+    },
+    {
+      "name": "Castilla-La Mancha",
+      "geo_limit": "ccaa",
+      "geo_id": 7,
+      "geography_type": "ccaa"
+    },
+    {
+      "name": "Castilla y León",
+      "geo_limit": "ccaa",
+      "geo_id": 8,
+      "geography_type": "ccaa"
+    },
+    {
+      "name": "Cataluña",
+      "geo_limit": "ccaa",
+      "geo_id": 9,
+      "geography_type": "ccaa"
+    },
+    {
+      "name": "País Vasco",
+      "geo_limit": "ccaa",
+      "geo_id": 10,
+      "geography_type": "ccaa"
+    },
+    {
+      "name": "Asturias",
+      "geo_limit": "ccaa",
+      "geo_id": 11,
+      "geography_type": "ccaa"
+    },
+    {
+      "name": "Navarra",
+      "geo_limit": "ccaa",
+      "geo_id": 12,
+      "geography_type": "ccaa"
+    },
+    {
+      "name": "Región de Murcia",
+      "geo_limit": "ccaa",
+      "geo_id": 13,
+      "geography_type": "ccaa"
+    },
+    {
+      "name": "Comunidad de Madrid",
+      "geo_limit": "ccaa",
+      "geo_id": 14,
+      "geography_type": "ccaa"
+    },
+    {
+      "name": "Comunidad Valenciana",
+      "geo_limit": "ccaa",
+      "geo_id": 15,
+      "geography_type": "ccaa"
+    },
+    {
+      "name": "Extremadura",
+      "geo_limit": "ccaa",
+      "geo_id": 16,
+      "geography_type": "ccaa"
+    },
+    {
+      "name": "Galicia",
+      "geo_limit": "ccaa",
+      "geo_id": 17,
+      "geography_type": "ccaa"
+    },
+    {
+      "name": "Islas Baleares",
+      "geo_limit": "ccaa",
+      "geo_id": 18,
+      "geography_type": "ccaa"
+    },
+    {
+      "name": "Islas Canarias",
+      "geo_limit": "ccaa",
+      "geo_id": 19,
+      "geography_type": "ccaa"
+    },
+    {
+      "name": "La Rioja",
+      "geo_limit": "ccaa",
+      "geo_id": 20,
+      "geography_type": "ccaa"
+    },
+    {
+      "name": "Ceuta",
+      "geo_limit": "ceuta",
+      "geo_id": 8744,
+      "geography_type": "ceuta"
+    },
+    {
+      "name": "Melilla",
+      "geo_limit": "melilla",
+      "geo_id": 8745,
+      "geography_type": "melilla"
+    }
+  ],
+  "territorial_endpoints": [
+    {
+      "name": "demanda_evolucion",
+      "title": "Evolución de la demanda",
+      "category": "demanda",
+      "widget": "evolucion",
+      "time_trunc": "month",
+      "geo_trunc": "electric_system"
+    },
+    {
+      "name": "balance_electrico",
+      "title": "Balance eléctrico",
+      "category": "balance",
+      "widget": "balance-electrico",
+      "time_trunc": "day",
+      "geo_trunc": "electric_system"
+    },
+    {
+      "name": "estructura_generacion",
+      "title": "Estructura de generación",
+      "category": "generacion",
+      "widget": "estructura-generacion",
+      "time_trunc": "month",
+      "geo_trunc": "electric_system"
+    },
+    {
+      "name": "evolucion_renovable_no_renovable",
+      "title": "Evolución renovable/no renovable",
+      "category": "generacion",
+      "widget": "evolucion-renovable-no-renovable",
+      "time_trunc": "month",
+      "geo_trunc": "electric_system"
+    },
+    {
+      "name": "estructura_renovables",
+      "title": "Estructura de generación renovable",
+      "category": "generacion",
+      "widget": "estructura-renovables",
+      "time_trunc": "month",
+      "geo_trunc": "electric_system"
+    },
+    {
+      "name": "estructura_generacion_emisiones",
+      "title": "Generación y emisiones asociadas",
+      "category": "generacion",
+      "widget": "estructura-generacion-emisiones-asociadas",
+      "time_trunc": "month",
+      "geo_trunc": "electric_system"
+    },
+    {
+      "name": "evolucion_generacion_emisiones",
+      "title": "Evolución de generación con/sin emisiones",
+      "category": "generacion",
+      "widget": "evolucion-estructura-generacion-emisiones-asociadas",
+      "time_trunc": "month",
+      "geo_trunc": "electric_system"
+    },
+    {
+      "name": "potencia_instalada",
+      "title": "Potencia instalada de generación",
+      "category": "generacion",
+      "widget": "potencia-instalada-generacion",
+      "time_trunc": "month",
+      "geo_trunc": "electric_system"
+    },
+    {
+      "name": "potencia_estructura_renovables",
+      "title": "Potencia instalada renovable",
+      "category": "generacion",
+      "widget": "potencia-estructura-renovables",
+      "time_trunc": "month",
+      "geo_trunc": "electric_system"
+    },
+    {
+      "name": "potencia_estructura_emisiones",
+      "title": "Potencia instalada con/sin emisiones",
+      "category": "generacion",
+      "widget": "potencia-estructura-emisiones-asociadas",
+      "time_trunc": "month",
+      "geo_trunc": "electric_system"
+    }
+  ],
+  "system_endpoints": [
+    {
+      "name": "intercambios_todas_fronteras_fisicos",
+      "title": "Intercambios físicos en todas las fronteras",
+      "category": "intercambios",
+      "widget": "todas-fronteras-fisicos",
+      "time_trunc": "day"
+    },
+    {
+      "name": "intercambios_todas_fronteras_programados",
+      "title": "Intercambios programados en todas las fronteras",
+      "category": "intercambios",
+      "widget": "todas-fronteras-programados",
+      "time_trunc": "day"
+    },
+    {
+      "name": "mercados_componentes_precio",
+      "title": "Componentes del precio de la energía de cierre",
+      "category": "mercados",
+      "widget": "componentes-precio-energia-cierre-desglose",
+      "time_trunc": "month"
+    },
+    {
+      "name": "mercados_energia_gestionada_ajustes",
+      "title": "Energía gestionada en servicios de ajuste",
+      "category": "mercados",
+      "widget": "energia-gestionada-servicios-ajuste",
+      "time_trunc": "month"
+    },
+    {
+      "name": "mercados_energia_restricciones",
+      "title": "Energía de restricciones",
+      "category": "mercados",
+      "widget": "energia-restricciones",
+      "time_trunc": "month"
+    },
+    {
+      "name": "mercados_regulacion_secundaria",
+      "title": "Energía y precios de regulación secundaria",
+      "category": "mercados",
+      "widget": "energia-precios-regulacion-secundaria",
+      "time_trunc": "month"
+    },
+    {
+      "name": "mercados_regulacion_terciaria",
+      "title": "Energía y precios de regulación terciaria",
+      "category": "mercados",
+      "widget": "energia-precios-regulacion-terciaria",
+      "time_trunc": "month"
+    },
+    {
+      "name": "mercados_coste_ajustes",
+      "title": "Coste de servicios de ajuste",
+      "category": "mercados",
+      "widget": "coste-servicios-ajuste",
+      "time_trunc": "month"
+    },
+    {
+      "name": "transporte_ens",
+      "title": "Energía no suministrada",
+      "category": "transporte",
+      "widget": "energia-no-suministrada-ens",
+      "time_trunc": "month"
+    },
+    {
+      "name": "transporte_tim",
+      "title": "Tiempo de interrupción medio",
+      "category": "transporte",
+      "widget": "tiempo-interrupcion-medio-tim",
+      "time_trunc": "month"
+    },
+    {
+      "name": "transporte_numero_cortes",
+      "title": "Número de cortes",
+      "category": "transporte",
+      "widget": "numero-cortes",
+      "time_trunc": "month"
+    },
+    {
+      "name": "transporte_km_lineas",
+      "title": "Kilómetros de líneas de transporte",
+      "category": "transporte",
+      "widget": "kilometros-lineas",
+      "time_trunc": "month"
+    }
+  ],
+  "excluded_endpoints": [
+    {
+      "name": "demanda_variacion_componentes",
+      "reason": "HTTP 400 in diagnostic tests for day/month/year."
+    },
+    {
+      "name": "mercados_precios_restricciones",
+      "reason": "HTTP 200 but 0 observations in diagnostic tests."
+    },
+    {
+      "name": "mercados_gestion_desvios",
+      "reason": "HTTP 500 in diagnostic tests for day/month/year."
+    }
+  ]
+}

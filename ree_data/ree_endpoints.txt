@@ -212,6 +212,22 @@ intercambios_todas_fronteras_fisicos | Intercambios físicos en todas las fronte
 https://apidatos.ree.es/es/datos/intercambios/todas-fronteras-fisicos?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day
 intercambios_todas_fronteras_programados | Intercambios programados en todas las fronteras | day
 https://apidatos.ree.es/es/datos/intercambios/todas-fronteras-programados?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day
+intercambios_francia_fisicos | Intercambios físicos con Francia | day
+https://apidatos.ree.es/es/datos/intercambios/francia-frontera?borderSelect=francia&start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day
+intercambios_portugal_fisicos | Intercambios físicos con Portugal | day
+https://apidatos.ree.es/es/datos/intercambios/portugal-frontera?borderSelect=portugal&start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day
+intercambios_marruecos_fisicos | Intercambios físicos con Marruecos | day
+https://apidatos.ree.es/es/datos/intercambios/marruecos-frontera?borderSelect=marruecos&start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day
+intercambios_andorra_fisicos | Intercambios físicos con Andorra | day
+https://apidatos.ree.es/es/datos/intercambios/andorra-frontera?borderSelect=andorra&start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day
+intercambios_francia_programados | Intercambios programados con Francia | day
+https://apidatos.ree.es/es/datos/intercambios/francia-frontera-programado?borderSelect=francia&start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day
+intercambios_portugal_programados | Intercambios programados con Portugal | day
+https://apidatos.ree.es/es/datos/intercambios/portugal-frontera-programado?borderSelect=portugal&start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day
+intercambios_marruecos_programados | Intercambios programados con Marruecos | day
+https://apidatos.ree.es/es/datos/intercambios/marruecos-frontera-programado?borderSelect=marruecos&start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day
+intercambios_andorra_programados | Intercambios programados con Andorra | day
+https://apidatos.ree.es/es/datos/intercambios/andorra-frontera-programado?borderSelect=andorra&start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=day
 mercados_componentes_precio | Componentes del precio de la energía de cierre | month
 https://apidatos.ree.es/es/datos/mercados/componentes-precio-energia-cierre-desglose?start_date=2019-01-01T00%3A00&end_date=2025-12-31T23%3A59&time_trunc=month
 mercados_energia_gestionada_ajustes | Energía gestionada en servicios de ajuste | month

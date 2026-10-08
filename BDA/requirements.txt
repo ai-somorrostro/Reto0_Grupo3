@@ -1,0 +1,4 @@
+pandas>=2.0
+pyarrow>=12.0
+influxdb-client>=1.38
+python-dotenv>=1.0

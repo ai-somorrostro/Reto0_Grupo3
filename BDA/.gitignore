@@ -1,0 +1,6 @@
+salidas_influx_ree/
+.env
+*.lp
+__pycache__/
+*.py[cod]
+ree_resultados_p1_p7.csv

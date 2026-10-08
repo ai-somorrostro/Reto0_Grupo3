@@ -16,3 +16,8 @@ __pycache__/
 # Archivos del sistema
 .DS_Store
 Thumbs.db
+
+# Secretos locales del despliegue
+.env
+.env.*
+!.env.example

@@ -1,0 +1,60 @@
+services:
+  influxdb:
+    image: influxdb:2.7
+    restart: unless-stopped
+    ports:
+      - "8086:8086"
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: ${INFLUX_INIT_USERNAME:-admin}
+      DOCKER_INFLUXDB_INIT_PASSWORD: ${INFLUX_INIT_PASSWORD:-change-me-in-local-env}
+      DOCKER_INFLUXDB_INIT_ORG: ${INFLUX_ORG:-red_electrica}
+      DOCKER_INFLUXDB_INIT_BUCKET: ${INFLUX_BUCKET:-ree_analisis}
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: ${INFLUX_WRITE_TOKEN:?INFLUX_WRITE_TOKEN is required}
+    volumes:
+      - influxdb-data:/var/lib/influxdb2
+      - influxdb-config:/etc/influxdb2
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail --silent http://localhost:8086/health >/dev/null"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 10s
+
+  loader:
+    build:
+      context: .
+      dockerfile: PIA/Dockerfile
+    restart: "no"
+    env_file:
+      - .env
+    environment:
+      INFLUX_URL: http://influxdb:8086
+      REE_PARQUET: /app/ree_data/data/dataset_ree_limpio_transicion_energetica_2019_2025.parquet
+    depends_on:
+      influxdb:
+        condition: service_healthy
+
+  grafana:
+    image: grafana/grafana:12.1.1
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    environment:
+      INFLUX_URL: http://influxdb:8086
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-change-me-in-local-env}
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./BDA/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./BDA/grafana/dashboards:/var/lib/grafana/dashboards/ree:ro
+    depends_on:
+      loader:
+        condition: service_completed_successfully
+
+volumes:
+  influxdb-data:
+  influxdb-config:
+  grafana-data:

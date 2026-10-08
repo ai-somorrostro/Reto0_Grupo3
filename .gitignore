@@ -19,3 +19,5 @@ Thumbs.db
 
 # Secretos locales del despliegue
 .env
+.env.*
+!.env.example

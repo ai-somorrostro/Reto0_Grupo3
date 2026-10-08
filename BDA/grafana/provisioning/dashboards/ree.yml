@@ -6,6 +6,6 @@ providers:
     folder: REE transición energética
     type: file
     disableDeletion: true
-    allowUiUpdates: true
+    allowUiUpdates: false
     options:
       path: /var/lib/grafana/dashboards/ree

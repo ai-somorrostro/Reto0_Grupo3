@@ -16,9 +16,8 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 
 
 ROOT = Path(__file__).resolve().parents[1]
-# The deployment owns one project-level .env; BDA/.env remains a local override.
+# The deployment owns one project-level .env. BDA/.env is intentionally ignored.
 load_dotenv(ROOT.parent / ".env")
-load_dotenv(ROOT / ".env", override=True)
 DATASET = Path(os.getenv("REE_PARQUET", ROOT.parent / "ree_data" / "data" / "dataset_ree_limpio_transicion_energetica_2019_2025.parquet"))
 MEASUREMENT = os.getenv("INFLUX_MEASUREMENT", "ree_analisis")
 EXCLUDED_TERRITORIES = {"Navarra", "Comunidad de Madrid", "Región de Murcia"}

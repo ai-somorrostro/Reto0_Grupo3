@@ -5,8 +5,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /app
 
-COPY BDA/requirements.txt /app/BDA/requirements.txt
-RUN pip install --no-cache-dir -r /app/BDA/requirements.txt
+COPY requirements.txt /app/requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
 
 COPY BDA/scripts /app/BDA/scripts
 COPY ree_data/data/dataset_ree_limpio_transicion_energetica_2019_2025.parquet \

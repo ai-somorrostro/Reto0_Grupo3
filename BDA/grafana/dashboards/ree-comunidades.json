@@ -1,0 +1,104 @@
+{
+  "annotations": {"list": []},
+  "editable": true,
+  "graphTooltip": 1,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "type": "row",
+      "title": "Comunidades · Demanda y estacionalidad",
+      "gridPos": {"h": 1, "w": 24, "x": 0, "y": 0},
+      "collapsed": false,
+      "panels": []
+    },
+    {
+      "type": "text",
+      "title": "Comunidades · Qué muestra este dashboard",
+      "gridPos": {"h": 3, "w": 24, "x": 0, "y": 1},
+      "options": {
+        "mode": "markdown",
+        "content": "### Lectura territorial\n\nConsulta cómo se reparte la demanda eléctrica entre comunidades, qué territorios están creciendo o reduciendo su demanda y compara su evolución. Puedes seleccionar varias comunidades y elegir la tecnología que quieres analizar en el gráfico de generación. Las tartas muestran porcentajes del periodo seleccionado."
+      },
+      "transparent": true
+    },
+    {
+      "type": "piechart",
+      "title": "Reparto de la demanda por comunidad",
+      "gridPos": {"h": 10, "w": 24, "x": 0, "y": 4},
+      "datasource": {"type": "influxdb", "uid": "ree-influxdb"},
+      "targets": [{
+        "refId": "A",
+        "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P8\" and r.metrica == \"Demanda mensual\" and r.territorio != \"Nacional\") |> group(columns: [\"territorio\"]) |> sum(column: \"_value\")"
+      }],
+      "fieldConfig": {"defaults": {"unit": "MWh", "displayName": "${__field.labels.territorio}"}, "overrides": []},
+      "options": {"pieType": "donut", "displayLabels": ["name", "percent"], "legend": {"displayMode": "table", "placement": "right", "values": ["value", "percent"]}, "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}}
+    },
+    {
+      "type": "timeseries",
+      "title": "Comparación de demanda mensual · ${territorio}",
+      "gridPos": {"h": 10, "w": 24, "x": 0, "y": 14},
+      "datasource": {"type": "influxdb", "uid": "ree-influxdb"},
+      "targets": [{
+        "refId": "A",
+        "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P8\" and r.territorio =~ /${territorio:regex}/ and r.metrica == \"Demanda mensual\") |> group(columns: [\"territorio\"])"
+      }],
+      "fieldConfig": {"defaults": {"unit": "MWh", "displayName": "${__field.labels.territorio}"}, "overrides": []},
+      "options": {"legend": {"displayMode": "list", "placement": "bottom"}}
+    },
+    {
+      "type": "timeseries",
+      "title": "Generación de ${tecnologia} · ${territorio}",
+      "gridPos": {"h": 10, "w": 24, "x": 0, "y": 24},
+      "datasource": {"type": "influxdb", "uid": "ree-influxdb"},
+      "targets": [{
+        "refId": "A",
+        "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P9\" and r.metrica == \"Generación mensual por tecnología\" and r.territorio =~ /${territorio:regex}/ and r.tecnologia =~ /${tecnologia:regex}/) |> group(columns: [\"territorio\", \"tecnologia\"])"
+      }],
+      "fieldConfig": {"defaults": {"unit": "MWh", "displayName": "${__field.labels.territorio} · ${__field.labels.tecnologia}"}, "overrides": []},
+      "options": {"legend": {"displayMode": "list", "placement": "bottom"}}
+    },
+    {
+      "type": "piechart",
+      "title": "Distribución de la generación por energía · ${territorio}",
+      "gridPos": {"h": 12, "w": 24, "x": 0, "y": 34},
+      "datasource": {"type": "influxdb", "uid": "ree-influxdb"},
+      "targets": [{
+        "refId": "A",
+        "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P9\" and r.metrica == \"Generación mensual por tecnología\" and r.territorio == \"${territorio}\") |> group(columns: [\"tecnologia\"]) |> sum(column: \"_value\")"
+      }],
+      "fieldConfig": {"defaults": {"unit": "MWh", "displayName": "${__field.labels.tecnologia}"}, "overrides": []},
+      "options": {"pieType": "donut", "displayLabels": ["name", "percent"], "legend": {"displayMode": "table", "placement": "right", "values": ["value", "percent"]}, "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}}
+    }
+  ],
+  "refresh": "5m",
+  "schemaVersion": 39,
+  "tags": ["REE", "comunidades", "territorio"],
+  "templating": {
+    "list": [
+      {"name": "bucket", "type": "constant", "query": "ree_analisis", "current": {"text": "ree_analisis", "value": "ree_analisis"}, "hide": 2},
+      {
+        "name": "territorio",
+        "type": "custom",
+        "query": "Andalucía,Aragón,Asturias,Cantabria,Castilla y León,Castilla-La Mancha,Cataluña,Ceuta,Comunidad de Madrid,Comunidad Valenciana,Extremadura,Galicia,Islas Baleares,Islas Canarias,La Rioja,Melilla,Navarra,País Vasco,Región de Murcia",
+        "includeAll": false,
+        "multi": true,
+        "current": {"text": "Castilla y León", "value": ["Castilla y León"]}
+      },
+      {
+        "name": "tecnologia",
+        "type": "custom",
+        "query": "Carbón,Ciclo combinado,Cogeneración,Eólica,Fuel + Gas,Hidroeólica,Hidráulica,Motores diésel,Nuclear,Otras renovables,Residuos no renovables,Residuos renovables,Solar fotovoltaica,Solar térmica,Turbina de gas,Turbina de vapor",
+        "includeAll": true,
+        "allValue": ".*",
+        "multi": false,
+        "current": {"text": "Eólica", "value": "Eólica"}
+      }
+    ]
+  },
+  "time": {"from": "2019-01-01T00:00:00Z", "to": "2025-12-31T23:59:59Z"},
+  "timezone": "browser",
+  "title": "REE · Comunidades autónomas",
+  "uid": "ree-comunidades",
+  "version": 1
+}

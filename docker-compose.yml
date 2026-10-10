@@ -35,6 +35,22 @@ services:
       influxdb:
         condition: service_healthy
 
+  influx-token-init:
+    image: python:3.12-slim
+    restart: "no"
+    env_file:
+      - .env
+    environment:
+      INFLUX_URL: http://influxdb:8086
+      INFLUX_READ_TOKEN_FILE: /run/influx-secrets/INFLUX_READ_TOKEN
+    volumes:
+      - influx-secrets:/run/influx-secrets
+      - ./BDA/scripts/ensure_influx_read_token.py:/usr/local/bin/ensure_influx_read_token.py:ro
+    depends_on:
+      influxdb:
+        condition: service_healthy
+    command: ["python", "/usr/local/bin/ensure_influx_read_token.py"]
+
   grafana:
     image: grafana/grafana:12.1.1
     restart: unless-stopped
@@ -48,13 +64,41 @@ services:
       GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-change-me-in-local-env}
     volumes:
       - grafana-data:/var/lib/grafana
+      - influx-secrets:/run/influx-secrets:ro
+      - ./BDA/grafana/start-grafana.sh:/etc/grafana/start-grafana.sh:ro
       - ./BDA/grafana/provisioning:/etc/grafana/provisioning:ro
       - ./BDA/grafana/dashboards:/var/lib/grafana/dashboards/ree:ro
+    entrypoint: ["/bin/sh", "/etc/grafana/start-grafana.sh"]
     depends_on:
       loader:
         condition: service_completed_successfully
+      influx-token-init:
+        condition: service_completed_successfully
+
+  grafana-bootstrap:
+    image: python:3.12-slim
+    restart: "no"
+    env_file:
+      - .env
+    environment:
+      GRAFANA_URL: http://grafana:3000
+      GRAFANA_ORG_ID: ${GRAFANA_ORG_ID:-1}
+      GRAFANA_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
+      GRAFANA_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-change-me-in-local-env}
+      GRAFANA_ANALYSIS_DASHBOARD_UIDS: ${GRAFANA_ANALYSIS_DASHBOARD_UIDS:-ree-comunidades}
+      INFLUX_URL: http://influxdb:8086
+      INFLUX_READ_TOKEN_FILE: /run/influx-secrets/INFLUX_READ_TOKEN
+    volumes:
+      - ./BDA/scripts/bootstrap_grafana.py:/usr/local/bin/bootstrap_grafana.py:ro
+      - ./BDA/grafana/dashboards:/dashboards:ro
+      - influx-secrets:/run/influx-secrets:ro
+    depends_on:
+      grafana:
+        condition: service_started
+    command: ["python", "/usr/local/bin/bootstrap_grafana.py"]
 
 volumes:
   influxdb-data:
   influxdb-config:
   grafana-data:
+  influx-secrets:

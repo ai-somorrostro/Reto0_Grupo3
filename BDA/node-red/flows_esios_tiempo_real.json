@@ -147,7 +147,7 @@
     "usetls": false,
     "tls": "",
     "influxdbVersion": "2.0",
-    "url": "http://influxdb:8086",
+    "url": "http://host.docker.internal:8086",
     "rejectUnauthorized": true
   },
   {

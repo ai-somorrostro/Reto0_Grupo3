@@ -50,7 +50,7 @@
       "targets": [
         {
           "refId": "A",
-          "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P1\") |> aggregateWindow(every: v.windowPeriod, fn: mean) |> yield(name: \"P1\")"
+          "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P1\" and (r.metrica == \"Generación renovable\" or r.metrica == \"Generación nuclear\")) |> aggregateWindow(every: v.windowPeriod, fn: sum, createEmpty: false) |> yield(name: \"P1\")"
         }
       ],
       "fieldConfig": {
@@ -84,7 +84,7 @@
       "targets": [
         {
           "refId": "A",
-          "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P1\") |> aggregateWindow(every: 1y, fn: mean)"
+          "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P1\" and (r.metrica == \"Generación renovable\" or r.metrica == \"Generación nuclear\")) |> aggregateWindow(every: 1y, fn: sum, createEmpty: false)"
         }
       ],
       "fieldConfig": {
@@ -96,7 +96,8 @@
       },
       "options": {
         "orientation": "vertical",
-        "xTickLabelRotation": 0
+        "xTickLabelRotation": 0,
+        "stacking": "normal"
       }
     },
     {
@@ -142,7 +143,7 @@
       "targets": [
         {
           "refId": "A",
-          "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P2\") |> aggregateWindow(every: v.windowPeriod, fn: mean)"
+          "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P2\" and (r.metrica == \"Generación renovable\" or r.metrica == \"Generación con emisiones\")) |> aggregateWindow(every: v.windowPeriod, fn: sum, createEmpty: false)"
         }
       ],
       "fieldConfig": {
@@ -162,7 +163,7 @@
     },
     {
       "type": "timeseries",
-      "title": "P2 · Variaciones comparadas",
+      "title": "P2 · Participación renovable",
       "gridPos": {
         "h": 10,
         "w": 24,
@@ -176,7 +177,7 @@
       "targets": [
         {
           "refId": "A",
-          "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P2\") |> aggregateWindow(every: 1mo, fn: mean)"
+          "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P2\" and r.metrica == \"Participación renovable\") |> aggregateWindow(every: 1mo, fn: mean, createEmpty: false)"
         }
       ],
       "fieldConfig": {
@@ -231,7 +232,7 @@
       "targets": [
         {
           "refId": "A",
-          "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P3\") |> aggregateWindow(every: 1y, fn: mean)"
+          "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P3\" and r.metrica == \"Generación anual\" and r.tecnologia =~ /^${tecnologia_p3:regex}$/) |> aggregateWindow(every: 1y, fn: mean, createEmpty: false)"
         }
       ],
       "fieldConfig": {
@@ -265,7 +266,7 @@
       "targets": [
         {
           "refId": "A",
-          "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P3\") |> last()"
+          "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P3\" and r.metrica == \"Crecimiento acumulado\" and r.tecnologia =~ /^${tecnologia_p3:regex}$/) |> last()"
         }
       ],
       "fieldConfig": {
@@ -362,7 +363,7 @@
     },
     {
       "type": "row",
-      "title": "P5 · Balance territorial",
+      "title": "P5 · Balance territorial generación-demanda",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -383,13 +384,13 @@
       },
       "options": {
         "mode": "markdown",
-        "content": "### P5 · Balance territorial\n\nCompara generación y demanda por territorio. Un saldo positivo indica excedente de generación y un saldo negativo indica que la demanda supera a la generación."
+        "content": "### P5 · Balance territorial generación-demanda\n\nCompara la electricidad generada y demandada por comunidad. Un saldo positivo indica más generación que demanda; un saldo negativo indica dependencia relativa de generación externa. Es un balance energético territorial, no una medida directa de exportación física."
       },
       "transparent": true
     },
     {
-      "type": "timeseries",
-      "title": "P5 · Saldo generación - demanda",
+      "type": "barchart",
+      "title": "P5 · Saldo territorial más reciente",
       "gridPos": {
         "h": 10,
         "w": 24,
@@ -403,21 +404,21 @@
       "targets": [
         {
           "refId": "A",
-          "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P5\" and r.metrica == \"Saldo generación-demanda\" and r.territorio =~ /^${territorio:regex}$/) |> aggregateWindow(every: 1y, fn: mean)"
+          "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P5\" and r.metrica == \"Saldo generación-demanda\") |> group(columns: [\"territorio\"]) |> last()"
         }
       ],
       "fieldConfig": {
         "defaults": {
           "unit": "MWh",
-          "displayName": "${__field.labels.territorio} · ${__field.labels.metrica}"
+          "displayName": "${__field.labels.territorio}"
         },
         "overrides": []
       },
-      "options": {}
+      "options": {"orientation": "horizontal", "xTickLabelRotation": 0}
     },
     {
       "type": "barchart",
-      "title": "P5 · Ratio generación / demanda",
+      "title": "P5 · Ratio generación-demanda",
       "gridPos": {
         "h": 10,
         "w": 24,
@@ -431,17 +432,17 @@
       "targets": [
         {
           "refId": "A",
-          "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P5\" and r.metrica == \"Ratio generación-demanda\") |> last()"
+          "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P5\" and r.metrica == \"Ratio generación-demanda\") |> group(columns: [\"territorio\"]) |> last()"
         }
       ],
       "fieldConfig": {
         "defaults": {
-          "unit": "short",
-          "displayName": "${__field.labels.territorio} · ${__field.labels.metrica}"
+          "unit": "percentunit",
+          "displayName": "${__field.labels.territorio}"
         },
         "overrides": []
       },
-      "options": {}
+      "options": {"orientation": "horizontal", "xTickLabelRotation": 0}
     },
     {
       "type": "row",
@@ -486,7 +487,7 @@
       "targets": [
         {
           "refId": "A",
-          "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P6\") |> aggregateWindow(every: 1mo, fn: mean)"
+          "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P6\" and (r.metrica == \"Variación hidráulica\" or r.metrica == \"Variación con emisiones\")) |> aggregateWindow(every: 1mo, fn: mean, createEmpty: false)"
         }
       ],
       "fieldConfig": {
@@ -500,7 +501,7 @@
     },
     {
       "type": "timeseries",
-      "title": "P6 · Asociación hidráulica-emisiones",
+      "title": "P6 · Niveles de hidráulica y emisiones",
       "gridPos": {
         "h": 10,
         "w": 24,
@@ -514,7 +515,7 @@
       "targets": [
         {
           "refId": "A",
-          "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P6\") |> aggregateWindow(every: 1mo, fn: mean)"
+          "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P6\" and (r.metrica == \"Generación hidráulica\" or r.metrica == \"Generación con emisiones\")) |> aggregateWindow(every: 1mo, fn: mean, createEmpty: false)"
         }
       ],
       "fieldConfig": {
@@ -569,7 +570,7 @@
       "targets": [
         {
           "refId": "A",
-          "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P7\" and r.pais =~ /^${pais:regex}$/) |> aggregateWindow(every: 1mo, fn: sum)"
+          "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P7\" and r.metrica == \"Saldo\" and r.pais =~ /^${pais:regex}$/) |> aggregateWindow(every: 1mo, fn: sum)"
         }
       ],
       "fieldConfig": {
@@ -597,124 +598,13 @@
       "targets": [
         {
           "refId": "A",
-          "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P7\") |> aggregateWindow(every: 1y, fn: sum)"
+          "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P7\" and r.metrica == \"Saldo\") |> group(columns: [\"pais\"]) |> aggregateWindow(every: 1y, fn: sum, createEmpty: false)"
         }
       ],
       "fieldConfig": {
         "defaults": {
           "unit": "MWh",
           "displayName": "${__field.labels.pais} · ${__field.labels.metrica}"
-        },
-        "overrides": []
-      },
-      "options": {}
-    },
-    {
-      "type": "row",
-      "title": "P0 · Calidad de datos",
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 168
-      },
-      "collapsed": false,
-      "panels": []
-    },
-    {
-      "type": "text",
-      "title": "P0 · Qué muestra este bloque",
-      "gridPos": {
-        "h": 3,
-        "w": 24,
-        "x": 0,
-        "y": 169
-      },
-      "options": {
-        "mode": "markdown",
-        "content": "### P0 · Calidad de datos\n\nControl básico del resultado cargado en InfluxDB: número de puntos publicados y fecha de la última observación. Los registros marcados para revisión se excluyen del flujo operativo."
-      },
-      "transparent": true
-    },
-    {
-      "type": "stat",
-      "title": "P0 · Registros observados",
-      "gridPos": {
-        "h": 5,
-        "w": 24,
-        "x": 0,
-        "y": 172
-      },
-      "datasource": {
-        "type": "influxdb",
-        "uid": "ree-influxdb"
-      },
-      "targets": [
-        {
-          "refId": "A",
-          "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\") |> count()"
-        }
-      ],
-      "fieldConfig": {
-        "defaults": {
-          "unit": "short",
-          "displayName": "Valor"
-        },
-        "overrides": []
-      },
-      "options": {}
-    },
-    {
-      "type": "stat",
-      "title": "P0 · Puntos de análisis cargados",
-      "gridPos": {
-        "h": 5,
-        "w": 24,
-        "x": 0,
-        "y": 177
-      },
-      "datasource": {
-        "type": "influxdb",
-        "uid": "ree-influxdb"
-      },
-      "targets": [
-        {
-          "refId": "A",
-          "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\") |> count()"
-        }
-      ],
-      "fieldConfig": {
-        "defaults": {
-          "unit": "short",
-          "displayName": "Valor"
-        },
-        "overrides": []
-      },
-      "options": {}
-    },
-    {
-      "type": "stat",
-      "title": "P0 · Última observación",
-      "gridPos": {
-        "h": 5,
-        "w": 24,
-        "x": 0,
-        "y": 182
-      },
-      "datasource": {
-        "type": "influxdb",
-        "uid": "ree-influxdb"
-      },
-      "targets": [
-        {
-          "refId": "A",
-          "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\") |> last()"
-        }
-      ],
-      "fieldConfig": {
-        "defaults": {
-          "unit": "dateTimeAsIso",
-          "displayName": "Valor"
         },
         "overrides": []
       },
@@ -726,7 +616,7 @@
   "tags": [
     "REE",
     "transición energética",
-    "P0-P7"
+    "P1-P7"
   ],
   "templating": {
     "list": [
@@ -747,13 +637,22 @@
           "type": "influxdb",
           "uid": "ree-influxdb"
         },
-        "query": "import \"influxdata/influxdb/schema\"\nschema.tagValues(bucket: \"ree_analisis\", tag: \"territorio\") |> sort()",
+        "query": "from(bucket: \"ree_analisis\") |> range(start: 2019-01-01T00:00:00Z, stop: 2026-01-01T00:00:00Z) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P5\" and r.territorio != \"sin_valor\") |> keep(columns: [\"territorio\"]) |> group() |> distinct(column: \"territorio\") |> rename(columns: {territorio: \"_value\"}) |> sort()",
         "includeAll": true,
         "multi": false,
+        "refresh": 1,
         "current": {
           "text": "Todos",
           "value": ".*"
         }
+      },
+      {
+        "name": "tecnologia_p3",
+        "type": "custom",
+        "query": "Carbón,Ciclo combinado,Cogeneración,Eólica,Fuel + Gas,Hidroeólica,Hidráulica,Motores diésel,Nuclear,Otras renovables,Residuos no renovables,Residuos renovables,Solar fotovoltaica,Solar térmica,Turbina de gas,Turbina de vapor",
+        "includeAll": false,
+        "multi": true,
+        "current": {"text": "Eólica, Solar fotovoltaica", "value": ["Eólica", "Solar fotovoltaica"]}
       },
       {
         "name": "pais",
@@ -774,5 +673,5 @@
   "timezone": "browser",
   "title": "REE · Transición energética 2019–2025",
   "uid": "ree-transicion-energetica",
-  "version": 100
+  "version": 103
 }

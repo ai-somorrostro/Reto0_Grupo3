@@ -6,6 +6,8 @@ providers:
     folder: REE transición energética
     type: file
     disableDeletion: true
-    allowUiUpdates: false
+    # IT puede editar dashboards desde Grafana. Los cambios se guardan en la
+    # base de datos persistente de Grafana y no en los JSON montados.
+    allowUiUpdates: true
     options:
       path: /var/lib/grafana/dashboards/ree

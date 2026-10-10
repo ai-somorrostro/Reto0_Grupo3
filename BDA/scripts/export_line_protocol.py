@@ -16,8 +16,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_INPUT = ROOT / "salidas_influx_ree" / "REE_resultados_para_InfluxDB.csv"
 DEFAULT_OUTPUT = ROOT / "salidas_influx_ree" / "ree_analisis.lp"
-REQUIRED = {"fecha", "pregunta", "metrica", "tecnologia", "territorio", "pais", "valor"}
-TAGS = ("pregunta", "metrica", "tecnologia", "territorio", "pais")
+REQUIRED = {"fecha", "analisis", "metrica", "tecnologia", "territorio", "pais", "valor"}
+TAGS = ("analisis", "metrica", "tecnologia", "territorio", "pais")
 
 
 def escape(value: str) -> str:

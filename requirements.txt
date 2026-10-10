@@ -1,4 +1,5 @@
-pandas>=2.0
-pyarrow>=12.0
+pandas>=2.2
+pyarrow>=18.0
+requests>=2.32
 influxdb-client>=1.38
 python-dotenv>=1.0

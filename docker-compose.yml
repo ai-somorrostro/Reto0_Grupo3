@@ -35,6 +35,24 @@ services:
       influxdb:
         condition: service_healthy
 
+  node-red:
+    build:
+      context: ./BDA/node-red
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      # El puerto 1880 ya está ocupado por otro servicio existente.
+      - "1881:1880"
+    env_file:
+      - .env
+    environment:
+      # InfluxDB ya existe y publica el puerto 8086 en Windows.
+      INFLUX_URL: http://host.docker.internal:8086
+      INFLUX_ORG: ${INFLUX_ORG:-red_electrica}
+      INFLUX_BUCKET: ${INFLUX_BUCKET:-ree_analisis}
+    volumes:
+      - node-red-data:/data
+
   grafana:
     image: grafana/grafana:12.1.1
     restart: unless-stopped
@@ -58,3 +76,4 @@ volumes:
   influxdb-data:
   influxdb-config:
   grafana-data:
+  node-red-data:

@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "grafana": {
+      "command": "uvx",
+      "args": [
+        "mcp-grafana",
+        "--enabled-tools",
+        "list_teams,list_users_by_org,list_all_roles,get_role_details,get_role_assignments,list_user_roles,list_team_roles,get_resource_permissions,get_resource_description,search_dashboards,search_folders,get_dashboard_by_uid,update_dashboard,get_dashboard_panel_queries,run_panel_query,get_dashboard_property,get_dashboard_summary,create_folder,list_datasources,get_datasource,query_influxdb,alerting_rules_read,alerting_rules_write"
+      ],
+      "env": {
+        "GRAFANA_URL": "http://localhost:3000",
+        "GRAFANA_SERVICE_ACCOUNT_TOKEN": "${GRAFANA_MCP_TOKEN}"
+      }
+    }
+  }
+}

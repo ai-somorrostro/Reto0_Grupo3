@@ -125,4 +125,3 @@ volumes:
   grafana-data:
   influx-secrets:
   node-red-data:
-  influx-secrets:

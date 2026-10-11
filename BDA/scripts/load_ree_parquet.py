@@ -112,6 +112,21 @@ def build(df: pd.DataFrame) -> pd.DataFrame:
     p9["value"] = p9.generation.groupby([p9.geography_name, p9.technology]).transform("sum")
     result.append(rows(p9, "mix_territorial", "Generación acumulada por tecnología", technology=p9.technology, territory_col="geography_name"))
 
+    # P9: monthly generation mix by territory and technology.
+    # Keep the technology in the tag so Grafana can draw one series per energy
+    # source after the user changes the territory selector.
+    p9 = df[
+        (df.endpoint == "estructura_generacion")
+        & (df.indicator_name != "Generación total")
+        & df.geography_name.notna()
+        & df.indicator_name.notna()
+    ].groupby(["month_date", "geography_name", "indicator_name"], as_index=False).value.sum()
+    p9 = p9.rename(columns={"month_date": "date", "indicator_name": "technology", "value": "generation"})
+    p9["value"] = p9.generation
+    result.append(rows(p9, "P9", "Generación mensual por tecnología", technology=p9.technology, territory_col="geography_name"))
+    p9["value"] = p9.generation.groupby([p9.geography_name, p9.technology]).transform("sum")
+    result.append(rows(p9, "P9", "Generación acumulada por tecnología", technology=p9.technology, territory_col="geography_name"))
+
     # P7: physical daily balance by international interconnection.
     countries = {"francia": "Francia", "portugal": "Portugal", "marruecos": "Marruecos", "andorra": "Andorra"}
     for key, country in countries.items():
@@ -134,6 +149,20 @@ def build(df: pd.DataFrame) -> pd.DataFrame:
     national_p8["value"] = national_p8.demand; result.append(rows(national_p8, "demanda", "Demanda nacional", territory_col="territorio"))
     national_p8["value"] = national_p8.demand.pct_change(12).fillna(0); result.append(rows(national_p8, "demanda", "Variación interanual", territory_col="territorio"))
     national_p8["value"] = national_p8.demand / national_p8.demand.mean(); result.append(rows(national_p8, "demanda", "Índice estacional", territory_col="territorio"))
+
+    # P8: monthly demand and seasonality, both by territory and nationally.
+    p8 = df[(df.endpoint == "demanda_evolucion") & (df.indicator_name == "Demanda")].copy()
+    p8 = p8.groupby(["month_date", "geography_name"], as_index=False).value.sum().rename(columns={"month_date": "date", "value": "demand"})
+    p8 = p8.sort_values(["geography_name", "date"])
+    p8["value"] = p8.demand; result.append(rows(p8, "P8", "Demanda mensual", territory_col="geography_name"))
+    p8["value"] = p8.groupby("geography_name").demand.pct_change(12).fillna(0); result.append(rows(p8, "P8", "Variación interanual", territory_col="geography_name"))
+    p8["value"] = p8.demand / p8.groupby("geography_name").demand.transform("mean").replace(0, pd.NA); result.append(rows(p8, "P8", "Índice estacional", territory_col="geography_name"))
+
+    national_p8 = p8.groupby("date", as_index=False).demand.sum().sort_values("date")
+    national_p8["territorio"] = "Nacional"
+    national_p8["value"] = national_p8.demand; result.append(rows(national_p8, "P8", "Demanda nacional", territory_col="territorio"))
+    national_p8["value"] = national_p8.demand.pct_change(12).fillna(0); result.append(rows(national_p8, "P8", "Variación interanual", territory_col="territorio"))
+    national_p8["value"] = national_p8.demand / national_p8.demand.mean(); result.append(rows(national_p8, "P8", "Índice estacional", territory_col="territorio"))
 
     output = pd.concat(result, ignore_index=True)
     output["valor"] = pd.to_numeric(output["valor"], errors="coerce")

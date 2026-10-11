@@ -29,7 +29,7 @@
       "datasource": {"type": "influxdb", "uid": "ree-influxdb"},
       "targets": [{
         "refId": "A",
-        "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P8\" and r.metrica == \"Demanda mensual\" and r.territorio != \"Nacional\") |> group(columns: [\"territorio\"]) |> sum(column: \"_value\")"
+        "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.analisis == \"demanda\" and r.metrica == \"Demanda mensual\" and r.territorio != \"Nacional\") |> group(columns: [\"territorio\"]) |> sum(column: \"_value\")"
       }],
       "fieldConfig": {"defaults": {"unit": "MWh", "displayName": "${__field.labels.territorio}"}, "overrides": []},
       "options": {"pieType": "donut", "displayLabels": ["name", "percent"], "legend": {"displayMode": "table", "placement": "right", "values": ["value", "percent"]}, "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}}
@@ -37,11 +37,11 @@
     {
       "type": "timeseries",
       "title": "Comparación de demanda mensual · ${territorio}",
-      "gridPos": {"h": 10, "w": 24, "x": 0, "y": 14},
+      "gridPos": {"h": 10, "w": 24, "x": 0, "y": 18},
       "datasource": {"type": "influxdb", "uid": "ree-influxdb"},
       "targets": [{
         "refId": "A",
-        "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P8\" and r.territorio =~ /${territorio:regex}/ and r.metrica == \"Demanda mensual\") |> group(columns: [\"territorio\"])"
+        "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.analisis == \"demanda\" and r.territorio =~ /${territorio:regex}/ and r.metrica == \"Demanda mensual\") |> group(columns: [\"territorio\"])"
       }],
       "fieldConfig": {"defaults": {"unit": "MWh", "displayName": "${__field.labels.territorio}"}, "overrides": []},
       "options": {"legend": {"displayMode": "list", "placement": "bottom"}}
@@ -49,11 +49,11 @@
     {
       "type": "timeseries",
       "title": "Generación de ${tecnologia} · ${territorio}",
-      "gridPos": {"h": 10, "w": 24, "x": 0, "y": 24},
+      "gridPos": {"h": 10, "w": 24, "x": 0, "y": 28},
       "datasource": {"type": "influxdb", "uid": "ree-influxdb"},
       "targets": [{
         "refId": "A",
-        "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P9\" and r.metrica == \"Generación mensual por tecnología\" and r.territorio =~ /${territorio:regex}/ and r.tecnologia =~ /${tecnologia:regex}/) |> group(columns: [\"territorio\", \"tecnologia\"])"
+        "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.analisis == \"mix_territorial\" and r.metrica == \"Generación mensual por tecnología\" and r.territorio =~ /${territorio:regex}/ and r.tecnologia =~ /${tecnologia:regex}/) |> group(columns: [\"territorio\", \"tecnologia\"])"
       }],
       "fieldConfig": {"defaults": {"unit": "MWh", "displayName": "${__field.labels.territorio} · ${__field.labels.tecnologia}"}, "overrides": []},
       "options": {"legend": {"displayMode": "list", "placement": "bottom"}}
@@ -61,11 +61,11 @@
     {
       "type": "piechart",
       "title": "Distribución de la generación por energía · ${territorio}",
-      "gridPos": {"h": 12, "w": 24, "x": 0, "y": 34},
+      "gridPos": {"h": 12, "w": 24, "x": 0, "y": 38},
       "datasource": {"type": "influxdb", "uid": "ree-influxdb"},
       "targets": [{
         "refId": "A",
-        "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.pregunta == \"P9\" and r.metrica == \"Generación mensual por tecnología\" and r.territorio == \"${territorio}\") |> group(columns: [\"tecnologia\"]) |> sum(column: \"_value\")"
+        "query": "from(bucket: \"$bucket\") |> range(start: v.timeRangeStart, stop: v.timeRangeStop) |> filter(fn: (r) => r._measurement == \"ree_analisis\" and r.analisis == \"mix_territorial\" and r.metrica == \"Generación mensual por tecnología\" and r.territorio == \"${territorio}\") |> group(columns: [\"tecnologia\"]) |> sum(column: \"_value\")"
       }],
       "fieldConfig": {"defaults": {"unit": "MWh", "displayName": "${__field.labels.tecnologia}"}, "overrides": []},
       "options": {"pieType": "donut", "displayLabels": ["name", "percent"], "legend": {"displayMode": "table", "placement": "right", "values": ["value", "percent"]}, "reduceOptions": {"calcs": ["lastNotNull"], "fields": "", "values": false}}

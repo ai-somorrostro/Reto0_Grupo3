@@ -21,6 +21,23 @@ El dataset analítico se encuentra en
 `ree_data/data/dataset_ree_limpio_transicion_energetica_2019_2025.parquet`.
 El CSV equivalente está en `ree_data/data/`.
 
+## Estructura del proyecto
+
+```text
+.
+├── BDA/
+│   ├── grafana/       Dashboards y configuración de Grafana.
+│   ├── node-red/      Flujos de integración con Node-RED.
+│   └── scripts/       Carga de datos y configuración de InfluxDB y Grafana.
+├── ree_data/
+│   ├── data/          Dataset original, limpio y resultados en Parquet/CSV.
+│   └── *.py           Descarga y limpieza de datos de REE.
+├── PIA/Dockerfile      Imagen Python para cargar el dataset en InfluxDB.
+├── requirements.txt    Dependencias Python globales del proyecto.
+├── docker-compose.yml   Orquestación de InfluxDB, Grafana y el cargador.
+└── .env.example         Plantilla de configuración local.
+```
+
 ## Requisitos
 
 - Docker Engine.
@@ -28,7 +45,7 @@ El CSV equivalente está en `ree_data/data/`.
 - Git, si se clona el proyecto desde un repositorio.
 
 Para regenerar el dataset desde los ficheros originales también se necesita
-Python 3.12 o superior y las dependencias de `BDA/requirements.txt`.
+Python 3.12 o superior y las dependencias de `requirements.txt`.
 
 ## Despliegue
 
@@ -109,7 +126,7 @@ docker compose down
 Para regenerar el dataset de análisis:
 
 ```bash
-python -m pip install -r BDA/requirements.txt
+python -m pip install -r requirements.txt
 python ree_data/download_border_exchanges.py
 python ree_data/clean_dataset.py
 docker compose up -d --build

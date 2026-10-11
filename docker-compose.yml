@@ -51,6 +51,28 @@ services:
         condition: service_healthy
     command: ["python", "/usr/local/bin/ensure_influx_read_token.py"]
 
+  node-red:
+    build:
+      context: BDA/node-red
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "1880:1880"
+    env_file:
+      - .env
+    environment:
+      ESIOS_TOKEN: ${ESIOS_TOKEN:?ESIOS_TOKEN is required}
+      INFLUX_URL: http://influxdb:8086
+      INFLUX_ORG: ${INFLUX_ORG:-red_electrica}
+      INFLUX_BUCKET: ${INFLUX_BUCKET:-ree_analisis}
+      INFLUX_WRITE_TOKEN: ${INFLUX_WRITE_TOKEN:?INFLUX_WRITE_TOKEN is required}
+    volumes:
+      - node-red-data:/data
+      - ./BDA/node-red/flows_esios_tiempo_real.json:/opt/node-red/flows.json:ro
+    depends_on:
+      influxdb:
+        condition: service_healthy
+
   grafana:
     image: grafana/grafana:12.1.1
     restart: unless-stopped
@@ -102,3 +124,4 @@ volumes:
   influxdb-config:
   grafana-data:
   influx-secrets:
+  node-red-data:

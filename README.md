@@ -15,7 +15,8 @@ o exportadora de España.
 - Python, pandas y PyArrow: limpieza, transformación y lectura del dataset.
 - InfluxDB 2.7: almacenamiento de series temporales y consultas Flux.
 - Grafana 12.1: dashboards interactivos y visualización de resultados.
-- Docker Compose: despliegue reproducible de todos los servicios.
+- Node-RED: integración de datos de ESIOS con InfluxDB.
+- Docker Compose: despliegue reproducible de los servicios.
 
 El dataset analítico se encuentra en
 `ree_data/data/dataset_ree_limpio_transicion_energetica_2019_2025.parquet`.
@@ -27,15 +28,15 @@ El CSV equivalente está en `ree_data/data/`.
 .
 ├── BDA/
 │   ├── grafana/       Dashboards y configuración de Grafana.
-│   ├── node-red/      Flujos de integración con Node-RED.
+│   ├── node-red/      Flujo de integración con ESIOS.
 │   └── scripts/       Carga de datos y configuración de InfluxDB y Grafana.
-├── ree_data/
-│   ├── data/          Dataset original, limpio y resultados en Parquet/CSV.
-│   └── *.py           Descarga y limpieza de datos de REE.
-├── PIA/Dockerfile      Imagen Python para cargar el dataset en InfluxDB.
-├── requirements.txt    Dependencias Python globales del proyecto.
-├── docker-compose.yml   Orquestación de InfluxDB, Grafana y el cargador.
-└── .env.example         Plantilla de configuración local.
+├── MIA/               Memoria del proyecto.
+├── PIA/               Imagen Docker para cargar el dataset.
+├── SBD/               Material de la asignatura
+├── ree_data/          Descarga, limpieza y datos de REE.
+├── requirements.txt   Dependencias Python del proyecto.
+├── docker-compose.yml Orquestación de InfluxDB, Grafana, Node-RED y cargador.
+└── .env.example       Plantilla de configuración local.
 ```
 
 ## Requisitos
@@ -68,6 +69,7 @@ Python 3.12 o superior y las dependencias de `requirements.txt`.
    INFLUX_WRITE_TOKEN=token-de-administracion
    INFLUX_INIT_PASSWORD=contraseña-de-influxdb
    GRAFANA_ADMIN_PASSWORD=contraseña-de-grafana
+   ESIOS_TOKEN=token-de-api-de-esios
    ```
 
    Las contraseñas de `GRAFANA_BOOTSTRAP_USERS` son opcionales. El fichero
@@ -98,13 +100,10 @@ GRAFANA_BOOTSTRAP_USERS=login|email|password|equipo|dashboard;...
 Los equipos válidos son `Direccion`, `Analisis` e `IT`. El equipo `Analisis`
 solo recibe los dashboards indicados en `GRAFANA_ANALYSIS_DASHBOARD_UIDS`.
 
-## Node-RED
-
-El flujo **ESIOS tiempo real** consulta cada minuto los últimos 30 minutos de
-15 indicadores de REE, limita las peticiones a una por segundo y escribe los
-valores recibidos en el bucket de InfluxDB configurado en `.env`. ESIOS puede
-publicar datos con retraso: consultar con más frecuencia no garantiza que
-haya un dato nuevo en cada ciclo.
+En Node-RED, abre la pestaña **ESIOS tiempo real** para ver el flujo y el panel
+**Debug** para inspeccionar las respuestas de la API y los errores. El flujo
+consulta 15 indicadores cada minuto y escribe los valores recibidos en
+InfluxDB; ESIOS puede publicar los datos con retraso.
 
 ## Comandos habituales
 

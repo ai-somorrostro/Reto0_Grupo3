@@ -7,7 +7,6 @@ Estructura esperada:
     ├── scraper_ree.py
     ├── ree_config.json
     ├── ree_endpoints.txt
-    ├── requirements.txt
     ├── data/
     │   ├── datos_ree_originales_2019_2025.parquet
     │   └── ree_control_2019_2025.parquet

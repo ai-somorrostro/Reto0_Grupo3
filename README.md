@@ -1,68 +1,144 @@
-# Reto 0 - Grupo 3
+# Análisis del sistema eléctrico español
 
-## Propósito del estudio
+Proyecto de análisis de datos de Red Eléctrica de España (REE) para el
+periodo 2019–2025. Su objetivo es estudiar la transición energética desde
+cuatro perspectivas: generación por tecnología, demanda, equilibrio
+territorial e intercambios internacionales.
 
-Este dataset se estudia para analizar la evolución del sistema eléctrico
-español entre 2019 y 2025: cómo cambia la demanda, qué tecnologías aportan la
-generación, cuánto pesa la generación renovable y cómo evoluciona el balance y
-el intercambio de electricidad entre España y otros países. La dimensión
-territorial permite comparar el comportamiento de las comunidades autónomas,
-Ceuta, Melilla y el sistema eléctrico.
+El proyecto responde preguntas sobre la evolución de las renovables, el peso
+de las tecnologías emisoras, el rendimiento aparente de la potencia instalada,
+el balance entre generación y demanda por comunidad y la posición importadora
+o exportadora de España.
 
-Este propósito permite formular preguntas como:
+## Tecnologías utilizadas
 
-- ¿Cómo ha evolucionado la demanda mensual por territorio?
-- ¿Qué tecnologías explican el cambio en la generación y cuál es la proporción
-  renovable?
-- ¿Qué territorios dependen más de una tecnología concreta?
-- ¿España es importadora o exportadora neta y cómo cambia ese saldo con el
-  tiempo?
+- Python, pandas y PyArrow: limpieza, transformación y lectura del dataset.
+- InfluxDB 2.7: almacenamiento de series temporales y consultas Flux.
+- Grafana 12.1: dashboards interactivos y visualización de resultados.
+- Node-RED: integración de datos de ESIOS con InfluxDB.
+- Docker Compose: despliegue reproducible de los servicios.
 
-## Dataset limpiado
-
-El fichero de análisis es
+El dataset analítico se encuentra en
 `ree_data/data/dataset_ree_limpio_transicion_energetica_2019_2025.parquet`.
+El CSV equivalente está en `ree_data/data/`.
 
-Para los intercambios se descargan por separado Francia, Portugal, Marruecos
-y Andorra. Los endpoints agregados `todas-fronteras-fisicos` y
-`todas-fronteras-programados` no se incorporan al fichero final porque no
-identifican de forma fiable el país en cada fila. La descarga específica se
-puede repetir con:
+## Estructura del proyecto
+
+```text
+.
+├── BDA/
+│   ├── grafana/       Dashboards y configuración de Grafana.
+│   ├── node-red/      Flujo de integración con ESIOS.
+│   └── scripts/       Carga de datos y configuración de InfluxDB y Grafana.
+├── MIA/               Memoria del proyecto.
+├── PIA/               Imagen Docker para cargar el dataset.
+├── SBD/               Material de la asignatura
+├── ree_data/          Descarga, limpieza y datos de REE.
+├── requirements.txt   Dependencias Python del proyecto.
+├── docker-compose.yml Orquestación de InfluxDB, Grafana, Node-RED y cargador.
+└── .env.example       Plantilla de configuración local.
+```
+
+## Requisitos
+
+- Docker Engine.
+- Docker Compose v2.
+- Git, si se clona el proyecto desde un repositorio.
+
+Para regenerar el dataset desde los ficheros originales también se necesita
+Python 3.12 o superior y las dependencias de `requirements.txt`.
+
+## Despliegue
+
+1. Clonar el proyecto y acceder a su directorio:
+
+   ```bash
+   git clone <URL_DEL_REPOSITORIO>
+   cd Reto0_Grupo3
+   ```
+
+2. Crear la configuración local:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+3. Editar `.env` y establecer, como mínimo, valores seguros para:
+
+   ```env
+   INFLUX_WRITE_TOKEN=token-de-administracion
+   INFLUX_INIT_PASSWORD=contraseña-de-influxdb
+   GRAFANA_ADMIN_PASSWORD=contraseña-de-grafana
+   ESIOS_TOKEN=token-de-api-de-esios
+   ```
+
+   Las contraseñas de `GRAFANA_BOOTSTRAP_USERS` son opcionales. El fichero
+   `.env` contiene credenciales y no debe subirse al repositorio.
+
+4. Construir las imágenes y arrancar los servicios:
+
+   ```bash
+   docker compose up -d --build
+   ```
+
+   El arranque inicial crea InfluxDB, carga el dataset, genera un token de
+   lectura para Grafana y provisiona los dashboards y usuarios configurados.
+
+## Acceso
+
+- Grafana: <http://localhost:3000>
+- InfluxDB: <http://localhost:8086>
+- Node-RED: <http://localhost:1880>
+
+El usuario administrador y su contraseña son los definidos en `.env`. Los
+usuarios adicionales se configuran con el formato:
+
+```env
+GRAFANA_BOOTSTRAP_USERS=login|email|password|equipo|dashboard;...
+```
+
+Los equipos válidos son `Direccion`, `Analisis` e `IT`. El equipo `Analisis`
+solo recibe los dashboards indicados en `GRAFANA_ANALYSIS_DASHBOARD_UIDS`.
+
+En Node-RED, abre la pestaña **ESIOS tiempo real** para ver el flujo y el panel
+**Debug** para inspeccionar las respuestas de la API y los errores. El flujo
+consulta 15 indicadores cada minuto y escribe los valores recibidos en
+InfluxDB; ESIOS puede publicar los datos con retraso.
+
+## Comandos habituales
+
+Ver el estado de los servicios:
 
 ```bash
+docker compose ps
+```
+
+Ver los registros:
+
+```bash
+docker compose logs -f
+```
+
+Reiniciar sin reconstruir las imágenes:
+
+```bash
+docker compose up -d
+```
+
+Detener los servicios:
+
+```bash
+docker compose down
+```
+
+Para regenerar el dataset de análisis:
+
+```bash
+python -m pip install -r requirements.txt
 python ree_data/download_border_exchanges.py
 python ree_data/clean_dataset.py
+docker compose up -d --build
 ```
 
-Se conservan las categorías `demanda`, `generacion`, `balance` e
-`intercambios`. Se excluyen `mercados` y `transporte` porque responden a otras
-preguntas y mezclan métricas operativas distintas.
-
-Campos conservados:
-
-| Campo | Uso |
-|---|---|
-| `datetime`, `date`, `year`, `month` | Análisis temporal |
-| `time_granularity` | Distinguir datos diarios y mensuales |
-| `geography_type`, `geography_name`, `border`, `system` | Comparación territorial y por frontera |
-| `category`, `endpoint` | Tipo de medida y fuente temática |
-| `indicator_id`, `indicator_type`, `indicator_name` | Indicador analizado |
-| `technology_id`, `technology_name` | Tecnología o componente |
-| `value`, `value_unit`, `percentage` | Medida numérica, unidad y proporción |
-| `quality_flag` | Marca valores de generación negativos para revisión |
-
-La fecha se recalcula convirtiendo `datetime` de UTC a `Europe/Madrid`. El
-fichero original registraba, por ejemplo, las 23:00 UTC como el día anterior,
-lo que desplazaba las columnas `date`, `year` y `month`.
-
-`value_unit` se deriva del endpoint: la potencia instalada se expresa en MW y
-el resto de medidas eléctricas en MWh. `percentage` se conserva como proporción
-entre 0 y 1. Los valores negativos detectados en algunos registros de
-generación no se modifican; quedan marcados como `revisar_valor_negativo` para
-no ocultar datos publicados que requieren una decisión metodológica.
-
-Para regenerarlo:
-
-```bash
-python ree_data/clean_dataset.py
-```
+Los volúmenes de Docker conservan los datos de InfluxDB, Grafana y los
+tokens generados entre reinicios.

@@ -18,6 +18,10 @@ o exportadora de España.
 - Node-RED: integración de datos de ESIOS con InfluxDB.
 - Docker Compose: despliegue reproducible de los servicios.
 
+El proyecto incluye también el servidor `mcp-grafana`, desplegado como un
+servicio Docker independiente. Un cliente MCP externo puede consultar los
+dashboards, alertas y datos de InfluxDB a través de Grafana.
+
 El dataset analítico se encuentra en
 `ree_data/data/dataset_ree_limpio_transicion_energetica_2019_2025.parquet`.
 El CSV equivalente está en `ree_data/data/`.
@@ -104,6 +108,35 @@ En Node-RED, abre la pestaña **ESIOS tiempo real** para ver el flujo y el panel
 **Debug** para inspeccionar las respuestas de la API y los errores. El flujo
 consulta 15 indicadores cada minuto y escribe los valores recibidos en
 InfluxDB; ESIOS puede publicar los datos con retraso.
+
+### Servidor MCP de Grafana
+
+Para habilitar la conexión MCP, añade al `.env`:
+
+```env
+GRAFANA_MCP_TOKEN=token-de-cuenta-de-servicio-de-grafana
+MCP_GRAFANA_SERVER_TOKEN=token-largo-para-node-red
+```
+
+`GRAFANA_MCP_TOKEN` es un token de cuenta de servicio de Grafana con permisos
+de lectura. `MCP_GRAFANA_SERVER_TOKEN` protege el endpoint MCP para los
+clientes externos; no es el token de InfluxDB.
+
+Después reconstruye Node-RED y arranca la pila:
+
+```bash
+docker compose up -d --build grafana-mcp
+```
+
+El endpoint para el cliente MCP externo es:
+
+```text
+http://localhost:8000/mcp
+```
+
+Envía el token `MCP_GRAFANA_SERVER_TOKEN` como autenticación Bearer. El
+servidor está limitado a lectura y expone las consultas de InfluxDB,
+dashboards y alertas de Grafana.
 
 ## Comandos habituales
 

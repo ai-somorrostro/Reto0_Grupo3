@@ -118,7 +118,7 @@ groups:
               query: >-
                 from(bucket: "ree_analisis")
                 |> range(start: -15m)
-                |> filter(fn: (r) => r._measurement == "generacion" and r._field == "mw" and r.tecnologia == "demanda_real" and r.geo == "España")
+                |> filter(fn: (r) => r._measurement == "generacion_ingestion" and r._field == "mw" and r.tecnologia == "demanda_real" and r.geo == "España")
                 |> aggregateWindow(every: 5m, fn: mean, createEmpty: false)
                 |> group(columns: ["geo", "tecnologia"])
                 |> last()

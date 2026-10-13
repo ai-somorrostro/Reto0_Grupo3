@@ -105,6 +105,31 @@ En Node-RED, abre la pestaña **ESIOS tiempo real** para ver el flujo y el panel
 consulta 15 indicadores cada minuto y escribe los valores recibidos en
 InfluxDB; ESIOS puede publicar los datos con retraso.
 
+### Alertas de Grafana
+
+Grafana provisiona automáticamente la alerta `ESIOS sin datos recientes`. Se
+activa si no se registra ninguna consulta correcta de Node-RED en InfluxDB
+durante 10 minutos y envía un correo mediante Gmail:
+
+También se provisiona la alerta `Demanda real baja en España`, que se activa
+cuando la demanda media de los últimos 5 minutos permanece por debajo de
+30.000 MW durante 15 minutos. El umbral se puede ajustar en
+`BDA/grafana/provisioning/alerting/ree-alerting.yml`.
+
+```env
+GF_SMTP_ENABLED=true
+GF_SMTP_HOST=smtp.gmail.com:587
+GF_SMTP_USER=cuenta-que-envia@gmail.com
+GF_SMTP_PASSWORD=contraseña-de-aplicación
+GF_SMTP_FROM_ADDRESS=cuenta-que-envia@gmail.com
+GRAFANA_ALERT_EMAIL=destinatario@gmail.com
+```
+
+La cuenta de Google debe tener activada la verificación en dos pasos y se debe
+usar una contraseña de aplicación, no la contraseña habitual. Después de
+cambiar estas variables, reinicia Grafana con
+`docker compose up -d --force-recreate grafana`.
+
 ## Comandos habituales
 
 Ver el estado de los servicios:

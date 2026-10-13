@@ -3,3 +3,6 @@ pyarrow>=21.0
 requests>=2.32
 influxdb-client>=1.38
 python-dotenv>=1.0
+polars>=1.0
+matplotlib>=3.8
+seaborn>=0.13

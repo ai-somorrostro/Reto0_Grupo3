@@ -91,6 +91,7 @@ services:
       GF_SMTP_FROM_ADDRESS: ${GF_SMTP_FROM_ADDRESS:-}
       GF_SMTP_FROM_NAME: ${GF_SMTP_FROM_NAME:-REE Grafana}
       GF_SMTP_STARTTLS_POLICY: ${GF_SMTP_STARTTLS_POLICY:-MandatoryStartTLS}
+      GF_SECURITY_ALLOW_EMBEDDING: "true"
     volumes:
       - grafana-data:/var/lib/grafana
       - influx-secrets:/run/influx-secrets:ro

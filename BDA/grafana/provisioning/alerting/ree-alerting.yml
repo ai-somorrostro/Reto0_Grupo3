@@ -1,0 +1,171 @@
+apiVersion: 1
+
+# Contact point configurable desde GRAFANA_ALERT_EMAIL.
+contactPoints:
+  - orgId: 1
+    name: ree-email
+    receivers:
+      - uid: ree_email
+        type: email
+        disableResolveMessage: false
+        settings:
+          addresses: $GRAFANA_ALERT_EMAIL
+          singleEmail: true
+          subject: '[REE] {{ template "default.title" . }}'
+
+# Alerta operativa: el flujo de Node-RED debe escribir esios_ingestion
+# periódicamente. Si no hay ningún poll_ok en 10 minutos, se notifica.
+groups:
+  - orgId: 1
+    name: ree-ingestion
+    folder: REE transición energética
+    interval: 1m
+    rules:
+      - uid: ree_esios_ingestion_stopped
+        title: ESIOS sin datos recientes
+        condition: C
+        data:
+          - refId: A
+            relativeTimeRange:
+              from: 600
+              to: 0
+            datasourceUid: ree-influxdb
+            model:
+              datasource:
+                type: influxdb
+                uid: ree-influxdb
+              query: >-
+                from(bucket: "ree_analisis")
+                |> range(start: -10m)
+                |> filter(fn: (r) => r._measurement == "esios_ingestion" and r._field == "poll_ok")
+                |> group(columns: [])
+                |> count()
+                |> map(fn: (r) => ({r with _time: now(), _field: "count"}))
+                |> pivot(rowKey: ["_time"], columnKey: ["_field"], valueColumn: "_value")
+              queryType: ''
+              refId: A
+              intervalMs: 60000
+              maxDataPoints: 43200
+              format: time_series
+              instant: false
+              range: true
+          - refId: B
+            relativeTimeRange:
+              from: 600
+              to: 0
+            datasourceUid: __expr__
+            model:
+              expression: A
+              datasource:
+                type: __expr__
+                uid: __expr__
+              refId: B
+              type: reduce
+              reducer: last
+              settings:
+                mode: dropNN
+          - refId: C
+            relativeTimeRange:
+              from: 600
+              to: 0
+            datasourceUid: __expr__
+            model:
+              expression: B
+              datasource:
+                type: __expr__
+                uid: __expr__
+              refId: C
+              type: threshold
+              conditions:
+                - evaluator:
+                    params:
+                      - 1
+                    type: lt
+                  operator:
+                    type: and
+                  query:
+                    params:
+                      - B
+                  reducer:
+                    params: []
+                    type: last
+                  type: query
+        noDataState: Alerting
+        execErrState: Alerting
+        for: 2m
+        annotations:
+          summary: No llegan datos recientes desde ESIOS
+          description: Node-RED no ha registrado ninguna consulta correcta en InfluxDB durante los últimos 10 minutos.
+        labels:
+          service: esios-ingestion
+          severity: critical
+        notification_settings:
+          receiver: ree-email
+
+      - uid: ree_demand_low_spain
+        title: Demanda real baja en España
+        condition: B
+        data:
+          - refId: A
+            relativeTimeRange:
+              from: 900
+              to: 0
+            datasourceUid: ree-influxdb
+            model:
+              datasource:
+                type: influxdb
+                uid: ree-influxdb
+              query: >-
+                from(bucket: "ree_analisis")
+                |> range(start: -15m)
+                |> filter(fn: (r) => r._measurement == "generacion_ingestion" and r._field == "mw" and r.tecnologia == "demanda_real" and r.geo == "España")
+                |> aggregateWindow(every: 5m, fn: mean, createEmpty: false)
+                |> group(columns: ["geo", "tecnologia"])
+                |> last()
+                |> pivot(rowKey: ["_time"], columnKey: ["_field"], valueColumn: "_value")
+              queryType: ''
+              refId: A
+              intervalMs: 60000
+              maxDataPoints: 43200
+              format: time_series
+              instant: false
+              range: true
+          - refId: B
+            relativeTimeRange:
+              from: 900
+              to: 0
+            datasourceUid: __expr__
+            model:
+              expression: A
+              datasource:
+                type: __expr__
+                uid: __expr__
+              refId: B
+              type: threshold
+              conditions:
+                - evaluator:
+                    params:
+                      - 30000
+                    type: lt
+                  operator:
+                    type: and
+                  query:
+                    params:
+                      - A
+                  reducer:
+                    params: []
+                    type: last
+                  type: query
+        noDataState: OK
+        execErrState: Alerting
+        for: 15m
+        annotations:
+          summary: Demanda real por debajo de 30.000 MW en España
+          description: La demanda real agregada de España ha permanecido por debajo de 30.000 MW durante 15 minutos.
+        labels:
+          service: esios-demand
+          geo: España
+          technology: demanda_real
+          severity: warning
+        notification_settings:
+          receiver: ree-email

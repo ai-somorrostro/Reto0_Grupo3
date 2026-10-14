@@ -18,7 +18,7 @@ contactPoints:
 groups:
   - orgId: 1
     name: ree-ingestion
-    folder: REE Alertas
+    folder: REE transición energética
     interval: 1m
     rules:
       - uid: ree_esios_ingestion_stopped

@@ -35,6 +35,7 @@ El CSV equivalente está en `ree_data/data/`.
 ├── SBD/               Material de la asignatura
 ├── ree_data/          Descarga, limpieza y datos de REE.
 ├── requirements.txt   Dependencias Python del proyecto.
+├── opencode.json      Conexión de OpenCode al MCP de Grafana.
 ├── docker-compose.yml Orquestación de InfluxDB, Grafana, Node-RED y cargador.
 └── .env.example       Plantilla de configuración local.
 ```
@@ -63,17 +64,21 @@ Python 3.12 o superior y las dependencias de `requirements.txt`.
    cp .env.example .env
    ```
 
-3. Editar `.env` y establecer, como mínimo, valores seguros para:
+3. El arranque local funciona con los valores de desarrollo de `.env.example`,
+   sin cuentas externas ni claves de API. Antes de exponer el proyecto en una
+   red compartida, cambia las contraseñas y el token local de InfluxDB:
 
    ```env
-   INFLUX_WRITE_TOKEN=token-de-administracion
-   INFLUX_INIT_PASSWORD=contraseña-de-influxdb
-   GRAFANA_ADMIN_PASSWORD=contraseña-de-grafana
-   ESIOS_TOKEN=token-de-api-de-esios
+   INFLUX_WRITE_TOKEN=un-token-local-seguro
+   INFLUX_INIT_PASSWORD=una-clave-segura
+   GRAFANA_ADMIN_PASSWORD=otra-clave-segura
    ```
 
-   Las contraseñas de `GRAFANA_BOOTSTRAP_USERS` son opcionales. El fichero
-   `.env` contiene credenciales y no debe subirse al repositorio.
+   `ESIOS_TOKEN` solo es necesario para recibir datos en tiempo real desde la
+   API de ESIOS/REE; los demás servicios y el MCP funcionan sin él. Los valores
+   de ejemplo son para desarrollo local, no para un despliegue expuesto.
+   Las contraseñas de `GRAFANA_BOOTSTRAP_USERS` y la configuración SMTP son
+   opcionales. El fichero `.env` está excluido de Git.
 
 4. Construir las imágenes y arrancar los servicios:
 
@@ -81,8 +86,9 @@ Python 3.12 o superior y las dependencias de `requirements.txt`.
    docker compose up -d --build
    ```
 
-   El arranque inicial crea InfluxDB, carga el dataset, genera un token de
-   lectura para Grafana y provisiona los dashboards y usuarios configurados.
+   El arranque inicial crea InfluxDB, carga el dataset, genera los tokens
+   necesarios en volúmenes Docker y provisiona los dashboards, usuarios y el
+   servidor MCP de Grafana. No es necesario copiar tokens al `.env`.
 
 ## Acceso
 
@@ -104,6 +110,15 @@ En Node-RED, abre la pestaña **ESIOS tiempo real** para ver el flujo y el panel
 **Debug** para inspeccionar las respuestas de la API y los errores. El flujo
 consulta 15 indicadores cada minuto y escribe los valores recibidos en
 InfluxDB; ESIOS puede publicar los datos con retraso.
+
+## Servidor MCP de Grafana
+
+El servidor se inicia con `docker compose up -d --build`. Para abrir OpenCode
+con el token MCP generado automáticamente, ejecuta desde la raíz:
+
+```bash
+MCP_GRAFANA_TOKEN="$(docker compose exec -T mcp-grafana cat /run/mcp-secrets/MCP_SERVER_TOKEN)" opencode
+```
 
 ### Alertas de Grafana
 
@@ -130,40 +145,23 @@ usar una contraseña de aplicación, no la contraseña habitual. Después de
 cambiar estas variables, reinicia Grafana con
 `docker compose up -d --force-recreate grafana`.
 
-## Comandos habituales
+## Solución de problemas
 
-Ver el estado de los servicios:
-
-```bash
-docker compose ps
-```
-
-Ver los registros:
-
-```bash
-docker compose logs -f
-```
-
-Reiniciar sin reconstruir las imágenes:
-
-```bash
-docker compose up -d
-```
-
-Detener los servicios:
-
-```bash
-docker compose down
-```
-
-Para regenerar el dataset de análisis:
-
-```bash
-python -m pip install -r requirements.txt
-python ree_data/download_border_exchanges.py
-python ree_data/clean_dataset.py
-docker compose up -d --build
-```
-
-Los volúmenes de Docker conservan los datos de InfluxDB, Grafana y los
-tokens generados entre reinicios.
+- **Docker no puede cargar la configuración:** confirma que `.env` existe y
+  ejecuta `docker compose config` para detectar errores de YAML o variables.
+- **Un servicio no arranca o aparece `unhealthy`:** consulta
+  `docker compose ps -a` y `docker compose logs <servicio>`. Revisa también que
+  Docker Engine esté en ejecución y que `.env` exista.
+- **No se puede abrir un servicio:** comprueba que sus puertos estén libres:
+  Grafana `3000`, InfluxDB `8086`, Node-RED `1880` y MCP `8000`.
+- **No llegan datos en tiempo real:** configura `ESIOS_TOKEN` en `.env` y
+  revisa los logs de Node-RED con `docker compose logs node-red`. El token solo
+  es necesario para la API de ESIOS.
+- **No aparecen datos, dashboards o alertas en Grafana:** revisa los logs de
+  `loader`, `grafana-bootstrap` y `grafana`; confirma que la carga de datos
+  terminó correctamente y que InfluxDB está healthy.
+- **No se envían alertas por correo:** configura las variables SMTP y
+  `GRAFANA_ALERT_EMAIL` en `.env`, y reinicia Grafana.
+- **Las credenciales cambiadas no se aplican:** InfluxDB y Grafana guardan su
+  configuración en volúmenes persistentes. `docker compose down -v` los
+  reinicia, pero también elimina los datos guardados.

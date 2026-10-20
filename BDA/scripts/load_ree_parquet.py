@@ -177,6 +177,19 @@ def main() -> None:
     if not DATASET.exists():
         raise SystemExit(f"No existe el parquet: {DATASET}")
     source = pd.read_parquet(DATASET)
+    required_columns = {"sample_id", "value_unit", "quality_flag", "datetime"}
+    missing_columns = required_columns.difference(source.columns)
+    if missing_columns:
+        raise SystemExit(
+            "El dataset no ha pasado la validación de calidad; faltan columnas: "
+            + ", ".join(sorted(missing_columns))
+        )
+    duplicate_samples = int(source["sample_id"].duplicated().sum())
+    if duplicate_samples:
+        raise SystemExit(f"Se detectaron {duplicate_samples} sample_id duplicados")
+    source["datetime"] = pd.to_datetime(source["datetime"], errors="coerce", utc=True)
+    if source["datetime"].isna().any() or source["value"].isna().any():
+        raise SystemExit("El dataset contiene timestamps o valores no válidos")
     result = build(source)
     result.to_csv(ROOT / "ree_resultados_p1_p7.csv", index=False, encoding="utf-8")
     with InfluxDBClient(url=os.environ["INFLUX_URL"], token=os.environ["INFLUX_WRITE_TOKEN"], org=os.environ["INFLUX_ORG"]) as client:

@@ -86,6 +86,7 @@ Python 3.12 o superior y las dependencias de `requirements.txt`.
 
 - Grafana: <http://localhost:3000>
 - InfluxDB: <http://localhost:8086>
+- Node-RED: <http://localhost:1880>
 
 El usuario administrador y su contraseña son los definidos en `.env`. Los
 usuarios adicionales se configuran con el formato:
@@ -96,6 +97,14 @@ GRAFANA_BOOTSTRAP_USERS=login|email|password|equipo|dashboard;...
 
 Los equipos válidos son `Direccion`, `Analisis` e `IT`. El equipo `Analisis`
 solo recibe los dashboards indicados en `GRAFANA_ANALYSIS_DASHBOARD_UIDS`.
+
+## Node-RED
+
+El flujo **ESIOS tiempo real** consulta cada minuto los últimos 30 minutos de
+15 indicadores de REE, limita las peticiones a una por segundo y escribe los
+valores recibidos en el bucket de InfluxDB configurado en `.env`. ESIOS puede
+publicar datos con retraso: consultar con más frecuencia no garantiza que
+haya un dato nuevo en cada ciclo.
 
 ## Comandos habituales
 

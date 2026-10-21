@@ -73,7 +73,7 @@ def build(df: pd.DataFrame) -> pd.DataFrame:
 
     # P4: annual generation per installed MW for wind and photovoltaic solar.
     gen = df[(df.endpoint == "estructura_generacion") & df.indicator_name.isin(["Eólica", "Solar fotovoltaica"])].groupby(["year", "indicator_name"], as_index=False).value.sum().rename(columns={"value": "generation"})
-    power = df[(df.endpoint == "potencia_instalada") & df.indicator_name.isin(["Eólica", "Solar fotovoltaica"])].groupby(["year", "indicator_name"], as_index=False).value.mean().rename(columns={"value": "power"})
+    power = df[(df.endpoint == "potencia_instalada") & df.indicator_name.isin(["Eólica", "Solar fotovoltaica"])].groupby(["year", "month_date", "indicator_name"], as_index=False).value.sum().groupby(["year", "indicator_name"], as_index=False).value.mean().rename(columns={"value": "power"})
     p4 = gen.merge(power, on=["year", "indicator_name"], how="inner"); p4["date"] = pd.to_datetime(p4.year.astype(str) + "-01-01")
     p4["value"] = p4.generation; result.append(rows(p4, "rendimiento_capacidad", "Generación", technology=p4.indicator_name))
     p4["value"] = p4.power; result.append(rows(p4, "rendimiento_capacidad", "Potencia instalada", technology=p4.indicator_name))

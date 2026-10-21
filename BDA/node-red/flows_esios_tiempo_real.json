@@ -76,6 +76,17 @@
     "outputs": 1,
     "x": 1070,
     "y": 100,
+    "wires": [["esios-quality-gate"]]
+  },
+  {
+    "id": "esios-quality-gate",
+    "type": "function",
+    "z": "esios-tab",
+    "name": "Validar y evitar colisiones",
+    "func": "// Influx identifica un punto por medicion + tags + timestamp.\n// Añadimos una clave de muestra a la copia de auditoria para que dos\n// muestras recibidas en el mismo milisegundo no se sobrescriban.\nconst points = Array.isArray(msg.payload) ? msg.payload : [];\nlet invalid = 0;\nfor (const [index, point] of points.entries()) {\n    const value = Number(point.fields?.mw);\n    if (point.measurement === 'generacion' && (!Number.isFinite(value) || value < 0)) {\n        invalid++;\n        point.fields = {...point.fields, quality_flag: 'fuera_de_rango'};\n        continue;\n    }\n    if (point.measurement === 'generacion_ingestion') {\n        const source = point.fields?.source_timestamp_ms || point.fields?.poll_timestamp_ms || index;\n        point.tags = {...point.tags, muestra: `${msg.tecnologia}|${point.tags?.geo || 'nacional'}|${source}|${index}`};\n    }\n}\nmsg.payload = points.filter((point) => point.measurement !== 'generacion' || Number.isFinite(Number(point.fields?.mw)));\nif (invalid) node.warn(`${msg.tecnologia}: ${invalid} muestras descartadas por calidad`);\nreturn msg;",
+    "outputs": 1,
+    "x": 1510,
+    "y": 100,
     "wires": [["esios-influx-write"]]
   },
   {

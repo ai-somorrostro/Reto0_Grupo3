@@ -1,0 +1,17 @@
+{
+  "rows": 171419,
+  "columns": 22,
+  "date_min": "2019-01-01",
+  "date_max": "2025-12-31",
+  "duplicate_sample_ids": 0,
+  "timestamp_collisions": 168862,
+  "missing_values": {},
+  "quality_flags": {
+    "ok": 171221,
+    "revisar_valor_negativo": 198
+  },
+  "units": {
+    "MWh": 139974,
+    "MW": 31445
+  }
+}

@@ -1,0 +1,13 @@
+.git
+.env
+.env.*
+**/__pycache__
+venv/
+.venv/
+MIA/
+SBD/
+BDA/pdf/
+BDA/grafana/
+ree_data/data/*.csv
+ree_data/data/datos_ree_originales_*.parquet
+ree_data/data/intercambios_*.parquet

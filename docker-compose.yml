@@ -130,7 +130,7 @@ services:
       - influx-secrets:/run/influx-secrets:ro
     depends_on:
       grafana:
-        condition: service_started
+        condition: service_healthy
     command: ["python", "/usr/local/bin/bootstrap_grafana.py"]
 
   grafana-mcp-auth-init:

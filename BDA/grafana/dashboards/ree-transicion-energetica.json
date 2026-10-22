@@ -66,7 +66,8 @@
      "placement": "bottom",
      "calcs": []
     }
-   }
+   },
+   "description": "Evolución temporal de la generación renovable y nuclear (sin emisiones). Si aparece 'No data', verifique que el intervalo de fechas seleccionado contenga datos en el bucket 'ree_analisis'."
   },
   {
    "type": "barchart",
@@ -98,7 +99,8 @@
     "orientation": "vertical",
     "xTickLabelRotation": 0,
     "stacking": "normal"
-   }
+   },
+   "description": "Composición anual agregada de generación renovable y nuclear. Si aparece 'No data', compruebe que el rango temporal incluya al menos un año completo."
   },
   {
    "type": "row",
@@ -159,7 +161,8 @@
      "placement": "bottom",
      "calcs": []
     }
-   }
+   },
+   "description": "Contraste de generación renovable frente a generación con emisiones de CO2 equivalente. Si aparece 'No data', revise el rango de tiempo seleccionado."
   },
   {
    "type": "timeseries",
@@ -187,7 +190,8 @@
     },
     "overrides": []
    },
-   "options": {}
+   "options": {},
+   "description": "Porcentaje de cobertura de la generación renovable sobre el total. Si aparece 'No data', confirme que existan registros de generación en el periodo consultado."
   },
   {
    "type": "row",
@@ -248,7 +252,8 @@
      "placement": "bottom",
      "calcs": []
     }
-   }
+   },
+   "description": "Generación anual por tecnología. Si aparece 'No data', asegúrese de tener seleccionada al menos una tecnología en el filtro superior '$tecnologia_p3'."
   },
   {
    "type": "barchart",
@@ -276,7 +281,8 @@
     },
     "overrides": []
    },
-   "options": {}
+   "options": {},
+   "description": "Crecimiento acumulado por tecnología respecto al año base (2019). Si aparece 'No data', verifique que haya al menos una tecnología seleccionada en el filtro '$tecnologia_p3'."
   },
   {
    "type": "row",
@@ -307,7 +313,7 @@
   },
   {
    "type": "timeseries",
-    "title": "P4 · GWh por GW",
+   "title": "P4 · GWh por GW",
    "gridPos": {
     "h": 10,
     "w": 24,
@@ -326,16 +332,17 @@
    ],
    "fieldConfig": {
     "defaults": {
-      "unit": "suffix: GWh/GW",
+     "unit": "suffix: GWh/GW",
      "displayName": "${__field.labels.tecnologia} · ${__field.labels.metrica}"
     },
     "overrides": []
    },
-   "options": {}
+   "options": {},
+   "description": "Rendimiento y factor de utilización de la potencia instalada. Si aparece 'No data', confirme que existan datos de potencia y generación para el rango temporal."
   },
   {
    "type": "timeseries",
-    "title": "P4 · GW y GWh",
+   "title": "P4 · GW y GWh",
    "gridPos": {
     "h": 10,
     "w": 24,
@@ -384,7 +391,8 @@
      }
     ]
    },
-   "options": {}
+   "options": {},
+   "description": "Comparación entre potencia instalada y generación eléctrica. Si aparece 'No data', revise el selector de fechas del dashboard."
   },
   {
    "type": "row",
@@ -442,7 +450,8 @@
    "options": {
     "orientation": "horizontal",
     "xTickLabelRotation": 0
-   }
+   },
+   "description": "Saldo generación-demanda por comunidad autónoma (positivo: balance excedentario; negativo: dependencia externa). Si aparece 'No data', confirme que la base de datos contenga cierres de balance territorial."
   },
   {
    "type": "barchart",
@@ -473,7 +482,8 @@
    "options": {
     "orientation": "horizontal",
     "xTickLabelRotation": 0
-   }
+   },
+   "description": "Porcentaje de cobertura de demanda propia con generación autonómica. Si aparece 'No data', compruebe el rango de tiempo del balance territorial."
   },
   {
    "type": "row",
@@ -528,7 +538,8 @@
     },
     "overrides": []
    },
-   "options": {}
+   "options": {},
+   "description": "Relación entre variaciones mensuales de energía hidráulica y tecnologías térmicas emisoras. Si aparece 'No data', verifique que el periodo contenga al menos dos meses consecutivos."
   },
   {
    "type": "timeseries",
@@ -556,7 +567,8 @@
     },
     "overrides": []
    },
-   "options": {}
+   "options": {},
+   "description": "Niveles absolutos de generación hidráulica frente a generación con emisiones. Si aparece 'No data', revise el rango temporal seleccionado."
   },
   {
    "type": "row",
@@ -611,7 +623,8 @@
     },
     "overrides": []
    },
-   "options": {}
+   "options": {},
+   "description": "Saldo de intercambios internacionales con el país seleccionado ('${pais}'). Si aparece 'No data', asegúrese de haber seleccionado un país en el filtro '$pais' y que existan intercambios en esas fechas."
   },
   {
    "type": "barchart",
@@ -639,7 +652,8 @@
     },
     "overrides": []
    },
-   "options": {}
+   "options": {},
+   "description": "Posición comercial anual neta de intercambios por país. Si aparece 'No data', compruebe que el rango temporal contenga años completos."
   }
  ],
  "refresh": "5m",

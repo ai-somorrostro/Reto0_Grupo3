@@ -9,7 +9,7 @@
    "id": 1,
    "type": "timeseries",
    "title": "Demanda real · España",
-   "description": "Potencia de demanda real recibida desde ESIOS.",
+   "description": "Potencia de demanda real recibida desde ESIOS. Si aparece 'No data', compruebe que el flujo de Node-RED esté en ejecución y que el rango temporal cubra las últimas horas.",
    "gridPos": {
     "h": 10,
     "w": 24,
@@ -65,7 +65,7 @@
    "id": 2,
    "type": "timeseries",
    "title": "Generación por tecnología · España",
-   "description": "Evolución de los indicadores de generación publicados por ESIOS.",
+   "description": "Evolución de los indicadores de generación en tiempo real desde ESIOS. Si aparece 'No data', confirme que Node-RED esté recibiendo datos de la API de ESIOS y escribiendo en InfluxDB.",
    "gridPos": {
     "h": 12,
     "w": 24,
@@ -116,7 +116,7 @@
    "id": 3,
    "type": "stat",
    "title": "Indicadores recibidos en los últimos 10 minutos",
-   "description": "Número de escrituras correctas registradas por Node-RED.",
+   "description": "Número de escrituras de telemetría registradas por Node-RED en los últimos 10 minutos. Si muestra 0 o no hay datos, indica que el flujo de Node-RED no ha registrado consultas recientes.",
    "gridPos": {
     "h": 6,
     "w": 24,
@@ -155,7 +155,8 @@
         "value": 1
        }
       ]
-     }
+     },
+     "noValue": "0 (sin actividad reciente en Node-RED)"
     },
     "overrides": []
    },

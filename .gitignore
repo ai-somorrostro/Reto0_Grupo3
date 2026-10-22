@@ -21,3 +21,9 @@ Thumbs.db
 .env
 .env.*
 !.env.example
+
+*:Zone.Identifier
+node_modules/
+.ipynb_checkpoints/
+ree_data/data/*.csv
+
